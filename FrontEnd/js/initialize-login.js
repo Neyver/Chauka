@@ -4,9 +4,9 @@ function validateLogin() {
     console.log(username);
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {            
+        if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
-            let obj = JSON.parse(this.responseText);            
+            let obj = JSON.parse(this.responseText);
             if(obj.Success===true){
                 location.href = "events.html";
             }
@@ -17,21 +17,21 @@ function validateLogin() {
         }
         else {
             if (this.readyState == 4 && this.status != 200) {
-                if (this.readyState == 4 && this.status == 400) {                    
+                if (this.readyState == 4 && this.status == 400) {
                     let obj = JSON.parse(this.responseText);
-                    alert(obj.Message);                    
+                    alert(obj.Message);
                 }
                 else {
-                    alert("Unexpected error!\n could not be processed.");                    
+                    alert("Unexpected error!\n could not be processed.");
                 }
                 console.log(this.responseText);
                 console.log(this.statusText);
                 console.log(this.readyState);
-                console.log(this.getAllResponseHeaders());                
+                console.log(this.getAllResponseHeaders());
             }
         }
     };
-    xhttp.open("GET", "http://localhost:5387/api/Accounts?username=" + username+"", true);        
+    xhttp.open("GET", "http://localhost:5387/api/Accounts?username=" + username+"", true);
     xhttp.send();
 
 }
