@@ -1,5 +1,6 @@
 ﻿namespace DataAccess
 {
+    using System;
     using System.Data.Entity;
     using Model.Object;
 
@@ -16,6 +17,24 @@
             };
 
             context.Users.Add(user);
+
+            var event1 = new Event()
+            {
+                NameEvent = "Event1",
+                StartDatetime = DateTime.Now,
+                UserId = 1
+            };
+
+            var event2 = new Event()
+            {
+                NameEvent = "Event2",
+                StartDatetime = DateTime.Parse("2018-07-26 14:00"),
+                UserId = 1
+            };
+
+            context.Events.Add(event1); 
+            context.Events.Add(event2);
+
             context.SaveChanges();
         }
     }

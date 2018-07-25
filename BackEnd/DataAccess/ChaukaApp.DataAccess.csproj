@@ -51,6 +51,7 @@
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="Context\DatabaseInitializer.cs" />
     <Compile Include="Context\DatabaseStartUp.cs" />
+    <Compile Include="EventsRepository.cs" />
     <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
