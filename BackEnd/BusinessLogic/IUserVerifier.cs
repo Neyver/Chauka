@@ -8,6 +8,6 @@
     {
         IUserRepository<User> Repository { get; set; }
 
-        IResult<User> Authentication(string accountName);
+        IResult<Account> Authentication(string accountName);
     }
 }

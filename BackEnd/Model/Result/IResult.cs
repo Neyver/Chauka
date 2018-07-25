@@ -2,7 +2,7 @@
 {
     using Model.Core;
 
-    public interface IResult<T> where T : IEntity
+    public interface IResult<T> where T : class, IEntity
     {
         string Message { get; set; }
 
