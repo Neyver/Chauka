@@ -1,33 +1,18 @@
-html, body{
-     height: 100%;
-     width: 100%;
-     margin: 0;
-     padding: 0;    
-     background: #f2f2f2;
-}
- * {
-     box-sizing: border-box;
-     overflow: hidden;
-}
+@import './default.css';
+@import './header.css';
+@import './map.css';
+
  .body-header {
-     /*background: #2c76c4;*/
      background: #018786;
      color: white;
      height: 80px;
-     overflow: hidden;
      width: 100%;
      margin: 0;
      left: 0;
      top: 0;
      position: fixed;
-     z-index: 5;
 }
 
-.body-page {
-  width: 360px;
-  padding: 85px 0 0;
-  margin: auto;
-}
 
  .body-container {
      background: white;
@@ -90,18 +75,16 @@ html, body{
      width: 100%;
 }
  [class*="col"] {
-     float: left;    
+     float: left;
 }
- /*label {
-     margin-left: 15px;
-}*/
+ 
  .height-100 {
      height: 85%;
      margin-top: 10px;
      position: relative;
 }
  .form-login {
-     width: 300px;    
+     width: 300px;
      position: absolute;
      margin: auto;
      margin-top: 50px;
@@ -109,9 +92,7 @@ html, body{
      left: 0;
      right: 0;
      bottom: 0;
-     background: orange;
-    /* z-index: 1000;
-     */
+     background: orange;    
 }
  .letter-center {
      font-family: 'Didot, serif';

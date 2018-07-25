@@ -21,7 +21,7 @@
                     if (user != null)
                     {
                         result.Success = true;
-                        result.Data = new Account() { Id = user.Id, AccountName = user.AccountName };
+                        result.Data = new Account() { Id = user.Id, Name = user.Name };
                         result.Message = "Successful sign in";
                     }
                     else
