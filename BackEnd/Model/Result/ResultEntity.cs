@@ -3,7 +3,7 @@
     using Model.Core;
 
     public class ResultEntity<T> : IResult<T>
-        where T : class, IEntity
+        where T : class
     {
         public string Message { get; set; }
 
