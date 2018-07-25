@@ -16,7 +16,7 @@
         {
             IUserVerifier verifier = new UserVerifier();
             verifier.Repository = new TestUserRepository();
-            IResult<User> result = verifier.Authentication("USR2");
+            IResult<Account> result = verifier.Authentication("USR2");
             Assert.AreEqual(false, result.Success);
             Assert.AreEqual("User not found", result.Message);
         }
@@ -26,7 +26,7 @@
         {
             IUserVerifier verifier = new UserVerifier();
             verifier.Repository = new TestUserRepository();
-            IResult<User> result = verifier.Authentication("USR1");
+            IResult<Account> result = verifier.Authentication("USR1");
             Assert.AreEqual(true, result.Success);
             Assert.AreEqual("Successful sign in", result.Message);
         }
@@ -36,7 +36,7 @@
         {
             IUserVerifier verifier = new UserVerifier();
             verifier.Repository = new TestUserRepository();
-            IResult<User> result = verifier.Authentication(string.Empty);
+            IResult<Account> result = verifier.Authentication(string.Empty);
             Assert.AreEqual(false, result.Success);
             Assert.AreEqual("The account name must not be empty", result.Message);
         }
@@ -45,7 +45,7 @@
         public void TestAuthenticationWhenRepositoryIsNullReturnIResultWithSuccessFalse()
         {
             IUserVerifier verifier = new UserVerifier();
-            IResult<User> result = verifier.Authentication("USR1");
+            IResult<Account> result = verifier.Authentication("USR1");
             Assert.AreEqual(false, result.Success);
             Assert.AreEqual("It is not possible to access the data service", result.Message);
         }
