@@ -46,7 +46,9 @@
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Core\IUserRepository.cs" />
     <Compile Include="Object\Account.cs" />
+    <Compile Include="Object\Event.cs" />
     <Compile Include="Object\User.cs" />
+    <Compile Include="Object\UserEvent.cs" />
     <Compile Include="Result\IResult.cs" />
     <Compile Include="Result\ResultEntity.cs" />
     <Compile Include="Result\ResultUser.cs" />
