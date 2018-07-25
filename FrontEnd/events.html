@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/style-event-list.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="js/event-list.js"></script>
   </head>
-  <body>
+  <body onload="fillHeader();">
     <div class="body-header">
       <div class="header-menu">
         <ul>
@@ -16,7 +17,7 @@
             </span>
             <span>Mark Position</span>
           </li>
-          <li>USR1
+          <li id="header-account"> USR1
             <ul>
               <li>Sign out</li>
             </ul>

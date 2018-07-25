@@ -9,6 +9,7 @@ function validateLogin() {
             let obj = JSON.parse(this.responseText);
             if(obj.Success===true){
                 location.href = "events.html";
+                localStorage.setItem('Account', JSON.stringify(obj.Data));
             }
             else {
                 alert("ERROR: \n"+obj.Message);
