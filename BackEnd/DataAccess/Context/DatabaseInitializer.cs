@@ -17,6 +17,8 @@
 
             context.Users.Add(user);
             context.SaveChanges();
+
+            ////context.Events.Add(new Event() {}); 
         }
     }
 }
