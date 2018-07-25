@@ -10,12 +10,12 @@
     public class AccountsController : ApiController
     {
         // GET api/accounts
-        public IResult<Account> Get(string username)
+        public IResult<Account> Get(string accountName)
         {
             IUserVerifier userVerifier = new UserVerifier();
             IUserRepository<User> userRepository = new UserRepository();
             userVerifier.Repository = userRepository;
-            return userVerifier.Authentication(username);
+            return userVerifier.Authentication(accountName);
         }
     }
 }
