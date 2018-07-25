@@ -1,20 +1,23 @@
-﻿using Model.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model.Object
+﻿namespace Model.Object
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using Model.Core;
+
     public class Event : IEntity
     {
+        [Key]
         public int Id { get; set; }
 
-        public DateTime Start { get; set; }
+        [Required]
+        public string NameEvent { get; set; }
 
-        public DateTime End { get; set; }
+        [Required]
+        public DateTime StartDatetime { get; set; }
 
-        public int IdUser { get; set; }
+        public DateTime? EndDatetime { get; set; }
+
+        [Required]
+        public int UserId { get; set; }
     }
 }

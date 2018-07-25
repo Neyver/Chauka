@@ -1,7 +1,6 @@
 ﻿namespace DataAccess
 {
     using System.Data.Entity;
-    using Model;
     using Model.Object;
 
     public class DatabaseContext : DbContext
@@ -11,5 +10,7 @@
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Event> Events { get; set; }
     }
 }

@@ -5,7 +5,7 @@
     using Model.Core;
     using Model.Object;
 
-    public class EventsRepository : IEventsRepository<User>
+    public class EventsRepository : IEventsRepository<Event>
     {
         private DatabaseContext context;
 
@@ -14,15 +14,15 @@
             this.context = new DatabaseContext();
         }
 
-        public IQueryable<User> GetAll()
+        public IQueryable<Event> GetAll()
         {
-            return this.context.Set<User>();
+            return this.context.Set<Event>();
         }
 
-        public IEnumerable<User> GetEventsByUserId(int userId)
+        public IEnumerable<Event> GetEventsByUserId(int userId)
         {
-            var events = this.context.Set<User>();
-            return events.Where(user => user.Id == userId);
+            var events = this.context.Set<Event>();
+            return events.Where(user => user.UserId == userId);
         }
     }
 }
