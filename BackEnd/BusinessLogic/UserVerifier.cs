@@ -8,9 +8,9 @@
     {
         public IUserRepository<User> Repository { get; set; }
 
-        public IResult<User> Authentication(string accountName)
+        public IResult<Account> Authentication(string accountName)
         {
-            IResult<User> result = new ResultUser();
+            IResult<Account> result = new ResultEntity<Account>();
             result.Success = false;
             if (this.Repository != null)
             {
@@ -21,7 +21,7 @@
                     if (user != null)
                     {
                         result.Success = true;
-                        result.Data = user;
+                        result.Data = new Account() { Id = user.Id, AccountName = user.AccountName };
                         result.Message = "Successful sign in";
                     }
                     else
