@@ -49,6 +49,16 @@
             Assert.AreEqual(false, result.Success);
             Assert.AreEqual("It is not possible to access the data service", result.Message);
         }
+
+
+        #region Test Events
+        [TestMethod]
+        public void TestEventWhen_With_SuccessFalse()
+        {
+            //test 
+        }
+        #endregion
+
     }
 
     public class TestUserRepository : IUserRepository<User>

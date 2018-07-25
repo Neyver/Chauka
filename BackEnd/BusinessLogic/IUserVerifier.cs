@@ -9,5 +9,7 @@
         IUserRepository<User> Repository { get; set; }
 
         IResult<Account> Authentication(string accountName);
+
+        IResult<UserEvent> GetUserEvents(int userId);        
     }
 }
