@@ -67,6 +67,11 @@
             return Entities;
         }
 
+        public User GetById(int id)
+        {
+            return this.entities.Find(elem => elem.Id == id);
+        }
+
         public User GetUserByAccountName(string accountName)
         {
             User user = this.entities.Find(element => element.AccountName == accountName);
