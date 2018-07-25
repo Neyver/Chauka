@@ -32,7 +32,7 @@ function validateLogin() {
             }
         }
     };
-    xhttp.open("GET", "http://localhost:5387/api/Accounts?username=" + username+"", true);
+    xhttp.open("GET", "http://localhost:5387/api/Accounts?accountName=" + username+"", true);
     xhttp.send();
 
 }
