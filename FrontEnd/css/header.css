@@ -1,0 +1,10 @@
+header {
+  background-color: #018786;
+  color: #040404;
+  height: 80px;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

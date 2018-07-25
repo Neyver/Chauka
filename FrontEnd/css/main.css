@@ -1,14 +1,7 @@
-html, body{
-     height: 100%;
-     width: 100%;
-     margin: 0;
-     padding: 0;    
-     background: #f2f2f2;
-}
- * {
-     box-sizing: border-box;
-     overflow: hidden;
-}
+@import './default.css';
+@import './header.css';
+@import './map.css';
+
  .body-header {
      /*background: #2c76c4;*/
      background: #018786;
@@ -90,7 +83,7 @@ html, body{
      width: 100%;
 }
  [class*="col"] {
-     float: left;    
+     float: left;
 }
  /*label {
      margin-left: 15px;
@@ -101,7 +94,7 @@ html, body{
      position: relative;
 }
  .form-login {
-     width: 300px;    
+     width: 300px;
      position: absolute;
      margin: auto;
      margin-top: 50px;
