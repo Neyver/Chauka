@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="DbConnection.cs" />
     <Compile Include="IEventHost.cs" />
+    <Compile Include="IMapPositioner.cs" />
+    <Compile Include="MapPositioner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EventHost.cs" />
   </ItemGroup>

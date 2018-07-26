@@ -130,6 +130,11 @@
             User user = this.entities.Find(element => element.AccountName == accountName);
             return user;
         }
+
+        public void Update(User IEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class TestEventsRepository : IEventsRepository<Event>

@@ -1,6 +1,6 @@
 ﻿namespace DataAccess
 {
-    using System;
+    using System.Data.Entity.Infrastructure;
     using System.Linq;
     using Model.Core;
     using Model.Object;
@@ -27,6 +27,15 @@
         public User GetUserByAccountName(string username)
         {
             return this.context.Users.FirstOrDefault(u => u.AccountName == username);
+        }
+
+        public void Update(User user)
+        {
+            this.context.Users.Attach(user);
+            DbEntityEntry<User> entry = context.Entry(user);
+            entry.Property(e => e.Latitude).IsModified = true;
+            entry.Property(e => e.Longitude).IsModified = true;
+            context.SaveChanges();
         }
     }
 }
