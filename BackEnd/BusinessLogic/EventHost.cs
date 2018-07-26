@@ -10,7 +10,7 @@
     {
         public IUserRepository<User> Repository { get; set; }
 
-        public IEventsRepository<Event> EventRepository { get; set; }
+        public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
         public IResult<Account> Authentication(string accountName)
         {

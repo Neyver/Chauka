@@ -29,24 +29,24 @@
             var event1 = new Event()
             {
                 NameEvent = "Event1",
-                StartDatetime = DateTime.Parse("28/07/2018 14:00", new CultureInfo("en-US")),
-                EndDatetime = DateTime.Parse("28/07/2018 21:00", new CultureInfo("en-US")),
+                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                EndDatetime = DateTime.Parse("07/28/2018 21:00", new CultureInfo("en-US")),
                 UserId = 1
             };
 
             var event2 = new Event()
             {
                 NameEvent = "Event2",
-                StartDatetime = DateTime.Parse("26/07/2018 08:00", new CultureInfo("en-US")),
-                EndDatetime = DateTime.Parse("26/07/2018 17:00", new CultureInfo("en-US")),
+                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
+                EndDatetime = DateTime.Parse("07/26/2018 17:00", new CultureInfo("en-US")),
                 UserId = 1
             };
 
             var event3 = new Event()
             {
                 NameEvent = "Event3",
-                StartDatetime = DateTime.Parse("26/07/2018 08:00", new CultureInfo("en-US")),
-                EndDatetime = DateTime.Parse("26/07/2018 17:00", new CultureInfo("en-US")),
+                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
+                EndDatetime = DateTime.Parse("07/26/2018 17:00", new CultureInfo("en-US")),
                 UserId = 1
             };
 
@@ -61,8 +61,8 @@
             var event5 = new Event()
             {
                 NameEvent = "Event5",
-                StartDatetime = DateTime.Parse("26/07/2018 14:00", new CultureInfo("en-US")),
-                EndDatetime = DateTime.Parse("28/07/2018 21:00", new CultureInfo("en-US")),
+                StartDatetime = DateTime.Parse("07/26/2018 14:00", new CultureInfo("en-US")),
+                EndDatetime = DateTime.Parse("07/28/2018 21:00", new CultureInfo("en-US")),
                 UserId = 1
             };
 
