@@ -1,12 +1,7 @@
-﻿using Model.Object;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model.Result
+﻿namespace Model.Result
 {
+    using Model.Object;
+
     public class ResultEvents : IResult<UserEvent>
     {
         public string Message { get; set; }
