@@ -35,6 +35,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BusinessLogic">
+      <HintPath>..\BusinessLogic\bin\Debug\BusinessLogic.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -96,10 +99,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\ChaukaApp.BusinessLogic.csproj">
-      <Project>{64aad739-39ad-443a-8f01-36eaca73ebe6}</Project>
-      <Name>ChaukaApp.BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataAccess\ChaukaApp.DataAccess.csproj">
       <Project>{0af261e2-d1bb-445e-b93d-3a896b22ee34}</Project>
       <Name>ChaukaApp.DataAccess</Name>

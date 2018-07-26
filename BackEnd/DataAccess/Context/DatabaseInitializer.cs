@@ -14,7 +14,9 @@
             var user = new User()
             {
                 Name = "Steve Jobs",
-                AccountName = "steve"
+                AccountName = "steve",
+                Latitude = 0,
+                Longitude = 0
             };
 
             var user1 = new User()
