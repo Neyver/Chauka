@@ -24,6 +24,8 @@ html {
 
 .wrapper {
   padding-top: 90px;
+  position: relative;
+  z-index: 100;
 }
 
 .container {
@@ -31,7 +33,7 @@ html {
 }
 
 .title {
-
+  opacity: 0.8;
 }
 
 .title img {
@@ -49,7 +51,7 @@ html {
 
 .buttons-container button {
   background-color: #80CBC4;
-  border: 1px solid #018786;
+  border: none;
   border-radius: 3px;
   color: #040404;
   cursor: pointer;

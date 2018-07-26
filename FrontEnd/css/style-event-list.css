@@ -1,7 +1,3 @@
-html, body {
-  overflow: hidden;
-}
-
 a {
   text-decoration: none;
   color: white;
@@ -25,7 +21,7 @@ a {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  z-index: 1000000000;
+  z-index: 1000;
 }
 
 .header-menu ul li {
@@ -46,19 +42,17 @@ a {
 
 .header-menu ul li:hover ul {
   display: block;
-  background: white;
-  border-bottom: 2px solid #018786;
-  border-left: 2px solid #018786;
-  /* border-right: 2px solid #018786; */
+  background-color: rgba(1, 135, 134, 0.65);
   position: absolute;
   right: 0;
   top: 100%;
+  width: 100%;
 }
 
 .header-menu ul li:hover ul li {
   width: 100%;
   white-space: nowrap;
-  color: #018786;
+  color: #fff !important;
 }
 
 .header-menu ul li:hover ul li:hover {

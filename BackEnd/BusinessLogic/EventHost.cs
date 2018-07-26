@@ -1,5 +1,6 @@
 ﻿namespace BusinessLogic
 {
+    using System;
     using DataAccess;
     using Model.Core;
     using Model.Object;
@@ -84,7 +85,73 @@
 
         public ResultSimplified RegisterEvent(Event newEvent)
         {
-            return null;
+            ResultSimplified result = new ResultSimplified();
+            result.Success = false;
+            try
+            {
+                if (this.Repository != null || this.EventRepository != null)
+                {
+                    if (newEvent != null)
+                    {
+                        if (newEvent.UserId > 0)
+                        {
+                            var user = this.Repository.GetById(newEvent.UserId);
+                            if (user != null)
+                            {
+                                if (!string.IsNullOrEmpty(newEvent.NameEvent))
+                                {
+                                    newEvent.StartDatetime = DateTime.Parse(newEvent.StartDatetime.ToString("yyyy-MM-dd h:mm"));
+                                    if (newEvent.EndDatetime != null)
+                                    {
+                                        newEvent.EndDatetime = DateTime.Parse(newEvent.StartDatetime.ToString("yyyy-MM-dd h:mm"));
+                                    }
+
+                                    if (this.EventRepository.Add(newEvent))
+                                    {
+                                        this.EventRepository.SaveChanges();
+                                        result.Message = "The Event was successfully registered.";
+                                        result.Success = true;
+                                    }
+                                }
+                                else
+                                {
+                                    result.Message = "The Event name must not be empty.";
+                                }
+                            }
+                            else
+                            {
+                                result.Message = "The User can not to be found.";
+                            }
+                        }
+                        else
+                        {
+                            if (newEvent.UserId < 0)
+                            {
+                                result.Message = "The User Id can not to be negative.";
+                            }
+                            else
+                            {
+                                result.Message = "The User Id can not to be empty.";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        result.Message = "The register of the Event can not be created.";
+                    }
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "It is not possible to access the data service.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Message = "Interal Exception: " + ex.Message;
+            }
+
+            return result;
         }
     }
 }
