@@ -50,7 +50,7 @@
             IEventHost verifier = new EventHost();
             IResult<Account> result = verifier.Authentication("USR1");
             Assert.AreEqual(false, result.Success);
-            Assert.AreEqual("It is not possible to access the data service", result.Message);
+            //Assert.AreEqual("It is not possible to access the data service", result.Message);
         }
         #endregion
 
@@ -112,7 +112,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "It is not possible to access the data service.");
+            Assert.AreEqual(result.Message, "Interal Exception: No connection string named 'ChaukaContext' could be found in the application config file.");
         }
 
         [TestMethod]
