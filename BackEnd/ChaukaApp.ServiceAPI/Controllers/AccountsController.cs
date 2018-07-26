@@ -12,7 +12,7 @@
         // GET api/accounts
         public IResult<Account> Get(string accountName)
         {
-            IUserVerifier userVerifier = new UserVerifier();
+            IEventHost userVerifier = new EventHost();
             IUserRepository<User> userRepository = new UserRepository();
             userVerifier.Repository = userRepository;
             return userVerifier.Authentication(accountName);

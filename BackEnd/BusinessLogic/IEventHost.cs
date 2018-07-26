@@ -4,9 +4,11 @@
     using Model.Object;
     using Model.Result;
 
-    public interface IUserVerifier
+    public interface IEventHost
     {
         IUserRepository<User> Repository { get; set; }
+
+        IEventsRepository<Event> EventRepository { get; set; }
 
         IResult<Account> Authentication(string accountName);
 

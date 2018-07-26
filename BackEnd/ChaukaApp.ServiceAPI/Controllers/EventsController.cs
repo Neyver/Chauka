@@ -12,7 +12,7 @@
         public IResult<UserEvent> Get(int userId)
         {
             IResult<UserEvent> resultEvent = new ResultEvents();
-            IUserVerifier userVerifier = new UserVerifier();
+            IEventHost userVerifier = new EventHost();
 
             try
             {

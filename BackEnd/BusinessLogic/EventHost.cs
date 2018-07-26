@@ -5,7 +5,7 @@
     using Model.Object;
     using Model.Result;
 
-    public class UserVerifier : IUserVerifier
+    public class EventHost : IEventHost
     {
         public IUserRepository<User> Repository { get; set; }
 
@@ -56,7 +56,23 @@
                 return eventsResult;
             }
 
-            this.EventRepository = new EventsRepository();
+            if (this.EventRepository == null)
+            {
+                this.EventRepository = new EventsRepository();
+            }
+
+            if (this.Repository == null)
+            {
+                this.Repository = new UserRepository();
+            }
+
+            if (this.Repository.GetById(userId) == null)
+            {
+                eventsResult.Message = "User not found";
+                eventsResult.Success = false;
+                return eventsResult;
+            }
+
             userResponse.Events = this.EventRepository.GetEventsByUserId(userId);
             userResponse.UserId = userId;
             eventsResult.Data = userResponse;
