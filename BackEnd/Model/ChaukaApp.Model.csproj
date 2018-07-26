@@ -52,6 +52,7 @@
     <Compile Include="Object\UserEvent.cs" />
     <Compile Include="Result\IResult.cs" />
     <Compile Include="Result\ResultEntity.cs" />
+    <Compile Include="Result\ResultEvents.cs" />
     <Compile Include="Result\ResultUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
