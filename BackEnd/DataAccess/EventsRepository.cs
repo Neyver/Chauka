@@ -1,5 +1,6 @@
 ﻿namespace DataAccess
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Model.Core;
@@ -12,6 +13,19 @@
         public EventsRepository()
         {
             this.context = new DatabaseContext();
+        }
+
+        public bool Add(Event eventObject)
+        {
+            bool success = false;
+            this.context.Entry<Event>(eventObject);
+            var result = this.context.Set<Event>().Add(eventObject);
+            if (result != null)
+            {
+                success = true;
+            }
+
+            return success;
         }
 
         public IQueryable<Event> GetAll()
@@ -28,6 +42,11 @@
         {
             var events = this.context.Set<Event>();
             return events.Where(user => user.UserId == userId);
+        }
+
+        public int SaveChanges()
+        {
+            return this.context.SaveChanges();
         }
     }
 }
