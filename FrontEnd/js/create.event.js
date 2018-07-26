@@ -1,26 +1,23 @@
-const Account = JSON.parse(localStorage.getItem('Account'))
-
-const fillHeader = () => {
-  const headerAccount = document.getElementById('header-account');
-  let contentHeaderAccount = headerAccount.innerHTML;
-  contentHeaderAccount += Account['Name'];
-  headerAccount.innerHTML = contentHeaderAccount;
-}
-
+const userId = JSON.parse(localStorage.getItem('Account'))['Id'];
 
 var url = 'http://localhost:5387/api/events';
 
 const saveEvent = () => {
   var data = {};
 
-  data.NameEvent = document.getElementsById('name-event');
-  data.StartDatetime = document.getElementsById('name-event');
-  data.EndDatetime = document.getElementsById('name-event');
-  data.UserId = Account['Id'];
-  data.Latitude = parseFloat(document.getElementsById('input'));
-  data.Longitude = parseFloat(document.getElementsById('input'));
+  data.NameEvent = document.getElementById('event-name').value;
+  const startDate = document.getElementById('start-date').value;
+  const startTime = document.getElementById('start-time').value;
+  data.StartDatetime = startDate +" "+ startTime;
+  const endDate = document.getElementById('end-date').value;
+  const endTime = document.getElementById('end-time').value;
+  data.EndDatetime = endDate +" "+ endTime;
+  data.UserId = userId;
+  data.Latitude = parseFloat(document.getElementById('latitude').value);
+  data.Longitude = parseFloat(document.getElementById('longitude').value);
 
   var json = JSON.stringify(data);
+  console.log(json);
   fetch(url, {
     body: json,
     headers: {'content-type': 'application/json'},
@@ -41,6 +38,6 @@ const saveEvent = () => {
     })
 }
 
-const cancelCreation = () => {
+const cancelEventCreation = () => {
   window.location.href = 'events.html'
 }
