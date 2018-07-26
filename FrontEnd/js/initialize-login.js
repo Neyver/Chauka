@@ -7,9 +7,10 @@ function validateLogin() {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
             let obj = JSON.parse(this.responseText);
-            if(obj.Success===true){
-                location.href = "events.html";
+            if (obj.Success===true) {
+                localStorage.clear()
                 localStorage.setItem('Account', JSON.stringify(obj.Data));
+                location.href = "events.html";
             }
             else {
                 alert("ERROR: \n"+obj.Message);

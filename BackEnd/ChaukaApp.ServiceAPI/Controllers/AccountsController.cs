@@ -17,5 +17,13 @@
             userVerifier.Repository = userRepository;
             return userVerifier.Authentication(accountName);
         }
+
+        // PATCH: api/accounts/
+        [HttpPatch]
+        public void UpdateGoogleMapPosition([FromBody] User user)
+        {
+            IMapPositioner positioner = new MapPositioner();
+            var result = positioner.UpdateUserPosition(user);
+        }
     }
 }
