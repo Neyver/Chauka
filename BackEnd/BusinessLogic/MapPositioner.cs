@@ -10,7 +10,6 @@
 
         public MapPositioner() : this(new UserRepository())
         {
-
         }
 
         public MapPositioner(IUserRepository<User> repository)
@@ -20,13 +19,13 @@
 
         public bool UpdateUserPosition(User update)
         {
-            var user = users.GetById(update.Id);
+            var user = this.users.GetById(update.Id);
 
             if (user != null)
             {
                 user.Latitude = update.Latitude;
                 user.Longitude = update.Longitude;
-                users.Update(user);
+                this.users.Update(user);
                 return true;
             }
 
@@ -34,4 +33,3 @@
         }
     }
 }
-
