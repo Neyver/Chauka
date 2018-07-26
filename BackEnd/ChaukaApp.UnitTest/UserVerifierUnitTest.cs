@@ -171,7 +171,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "The User Id can not to be empty.");
+            Assert.AreEqual(result.Message, "The User Id can not be empty.");
         }
 
         [TestMethod]
@@ -187,7 +187,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "The User Id can not to be negative.");
+            Assert.AreEqual(result.Message, "The User Id can not be negative.");
         }
 
         [TestMethod]
@@ -203,7 +203,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "The User can not to be found.");
+            Assert.AreEqual(result.Message, "The User can not be found.");
         }
 
         [TestMethod]
