@@ -1,0 +1,68 @@
+.form-container {
+  background-color: #E0F2F1;
+  border: 1px solid #00695C;
+  border-radius: 5px;
+  height: calc(100vh - 230px);
+  padding: 20px;
+}
+
+.form-container::after,
+.datetime-input::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.left-form {
+  float: left;
+  margin-right: 20px;
+  width: calc(30% - 20px);
+}
+
+.right-map {
+  float: left;
+  height: 100%;
+  position: relative;
+  width: 70%;
+}
+
+.form-group {
+  padding-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-input input,
+.datetime-input input {
+  font-family: "Titillium Web", Verdana;
+}
+
+.form-input input[type=text],
+.datetime-input {
+  background-color: white;
+  border: 1px solid #26A69A;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
+.form-input input {
+  display: block;
+  width: 100%;
+}
+
+.datetime-input input {
+  border: none;
+}
+
+.datetime-input input[type=date] {
+  float: left;
+  width: 60%;
+}
+
+.datetime-input input[type=time] {
+  float: left;
+  width: 40%;
+}

@@ -81,5 +81,10 @@
 
             return eventsResult;
         }
+
+        public ResultSimplified RegisterEvent(Event newEvent)
+        {
+            return null;
+        }
     }
 }
