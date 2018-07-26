@@ -26,5 +26,23 @@
 
             return resultEvent;
         }
+
+        public ResultSimplified Post(Event newEvent)
+        {
+            ResultSimplified resultRegister;
+            try
+            {
+                IEventHost eventHost = new EventHost();
+                resultRegister = eventHost.RegisterEvent(newEvent);
+            }
+            catch (Exception)
+            {
+                resultRegister = new ResultSimplified();
+                resultRegister.Success = false;
+                resultRegister.Message = "The service could not respond to your request";
+            }
+
+            return resultRegister;
+        }
     }
 }
