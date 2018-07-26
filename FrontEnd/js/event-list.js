@@ -18,46 +18,28 @@ function fillHeader() {
 function getEvents() {
   const account = JSON.parse(Account);
   const userId = account['Id'];
-  let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-          console.log(this.responseText);
-          let obj = JSON.parse(this.responseText);
-          if(obj.Success===true){
-              localStorage.setItem('EventsUser', JSON.stringify(obj.Data));
-              fillTableEvents();
-          }
-          else {
-              alert("ERROR: \n"+obj.Message);
-          }
-
+  fetch('http://localhost:5387/api/Events?userId=' + userId)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      if(data['Success'] === true) {
+        console.log(data['Message']);
+        fillTableEvents(data['Data']['Events']);
+      } else {
+        console.log(data['Message']);
+        alert(data['Message']);
       }
-      else {
-          if (this.readyState == 4 && this.status != 200) {
-              if (this.readyState == 4 && this.status == 400) {
-                  let obj = JSON.parse(this.responseText);
-                  alert(obj.Message);
-              }
-              else {
-                  alert("Unexpected error!\n could not be processed.");
-              }
-              console.log(this.responseText);
-              console.log(this.statusText);
-              console.log(this.readyState);
-              console.log(this.getAllResponseHeaders());
-          }
-      }
-  };
-  xhttp.open("GET", "http://localhost:5387/api/Events?userId=" + userId +"", true);
-  xhttp.send();
+    })
+    .catch(error => {
+      console.log(error);
+      alert(error);
+    })
 }
 
-function fillTableEvents() {
-  if(UserEvents !== null) {
-    const userEvents = JSON.parse(UserEvents);
+function fillTableEvents(events) {
+  if(events !== null) {
     let tableEvents = document.getElementById('table-events-user');
     let contentTable = "";
-    let events = userEvents['Events'];
     events.forEach((event) => {
       contentTable += '<tr>\
         <td>' + event['NameEvent'] + '</td>\
