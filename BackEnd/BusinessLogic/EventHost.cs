@@ -8,7 +8,7 @@
 
     public class EventHost : IEventHost
     {
-        public IUserRepository<User> Repository { get; set; }
+        public IUserRepository<User> Repository { get; set; } = new UserRepository();
 
         public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
