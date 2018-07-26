@@ -1,14 +1,14 @@
 ﻿namespace ChaukaApp.UnitTest
 {
+    using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using BusinessLogic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Model.Core;
     using Model.Object;
     using Model.Result;
-    using System;
-    using System.Globalization;
 
     [TestClass]
     public class UserVerifierUnitTest
@@ -126,7 +126,6 @@
                 UserId = 10,
                 NameEvent = "New Event",
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
-
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "Interal Exception: Object reference not set to an instance of an object.");
@@ -143,7 +142,6 @@
                 UserId = 1,
                 NameEvent = "New Event",
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
-
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "It is not possible to access the data service.");
@@ -217,7 +215,7 @@
             ResultSimplified result = eventHost.RegisterEvent(new Event()
             {
                 UserId = 1,
-                NameEvent = "",
+                NameEvent = string.Empty,
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
@@ -254,7 +252,6 @@
                 NameEvent = "New Event",
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
                 EndDatetime = DateTime.Parse("07/28/2018 19:00", new CultureInfo("en-US")),
-
             };
 
             ResultSimplified result = eventHost.RegisterEvent(newEvent);
@@ -293,7 +290,7 @@
             return user;
         }
 
-        public void Update(User IEntity)
+        public void Update(User user)
         {
             throw new NotImplementedException();
         }
@@ -308,21 +305,21 @@
             this.entities.Add(new Event()
             {
                 NameEvent = "Event1",
-                StartDatetime = DateTime.Parse("08/07/2018 14:00", new CultureInfo("es-ES")),
+                StartDatetime = DateTime.Parse("07/08/2018 14:00", new CultureInfo("en-US")),
                 UserId = 1
             });
 
             this.entities.Add(new Event()
             {
                 NameEvent = "Event2",
-                StartDatetime = DateTime.Parse("26/07/2018 08:00", new CultureInfo("es-ES")),
+                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
                 UserId = 1
             });
 
             this.entities.Add(new Event()
             {
                 NameEvent = "Event3",
-                StartDatetime = DateTime.Parse("26/07/2018 08:00", new CultureInfo("es-ES")),
+                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
                 UserId = 1
             });
         }

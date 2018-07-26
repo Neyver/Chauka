@@ -95,7 +95,7 @@
                     {
                         if (newEvent.UserId > 0)
                         {
-                            var user = Repository.GetById(newEvent.UserId);
+                            var user = this.Repository.GetById(newEvent.UserId);
                             if (user != null)
                             {
                                 if (!string.IsNullOrEmpty(newEvent.NameEvent))
@@ -105,10 +105,10 @@
                                     {
                                         newEvent.EndDatetime = DateTime.Parse(newEvent.StartDatetime.ToString("yyyy-MM-dd h:mm"));
                                     }
-                                    bool res = EventRepository.Add(newEvent);
-                                    if (res)
+
+                                    if (this.EventRepository.Add(newEvent))
                                     {
-                                        EventRepository.SaveChanges();
+                                        this.EventRepository.SaveChanges();
                                         result.Message = "The Event was successfully registered.";
                                         result.Success = true;
                                     }
@@ -150,6 +150,7 @@
             {
                 result.Message = "Interal Exception: " + ex.Message;
             }
+
             return result;
         }
     }
