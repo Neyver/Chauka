@@ -1,13 +1,14 @@
-@import 'https://fonts.googleapis.com/css?family=Oswald:300,400,700';
+@import 'https://fonts.googleapis.com/css?family=Titillium+Web:400,70';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import './header.css';
 @import './map.css';
 @import './style-event-list.css';
+@import './forms.css';
 
 body,
 html {
   color: #020202;
-  font-family: 'Oswald';
+  font-family: 'Titillium Web', Verdana;
   font-size: 15px;
   height: 100vh;
   margin: 0;
@@ -52,7 +53,7 @@ html {
   border-radius: 3px;
   color: #040404;
   cursor: pointer;
-  font-family: 'Oswald';
+  font-family: 'Titillium Web', Verdana;
   font-weight: 400;
   height: 45px;
   padding: 5px 0;
