@@ -19,6 +19,11 @@
             return this.context.Set<Event>();
         }
 
+        public Event GetById(int id)
+        {
+            return this.context.Events.Find(id);
+        }
+
         public IEnumerable<Event> GetEventsByUserId(int userId)
         {
             var events = this.context.Set<Event>();

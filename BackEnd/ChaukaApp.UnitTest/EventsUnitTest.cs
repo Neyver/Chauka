@@ -1,10 +1,10 @@
-﻿using BusinessLogic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Model.Object;
-using Model.Result;
-
-namespace ChaukaApp.UnitTest
+﻿namespace ChaukaApp.UnitTest
 {
+    using BusinessLogic;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Model.Object;
+    using Model.Result;
+
     public class EventsUnitTest
     {
         [TestMethod]

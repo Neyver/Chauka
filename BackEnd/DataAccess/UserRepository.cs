@@ -19,6 +19,11 @@
             return this.context.Set<User>();
         }
 
+        public User GetById(int id)
+        {
+            return this.context.Users.Find(id);
+        }
+
         public User GetUserByAccountName(string username)
         {
             return this.context.Users.FirstOrDefault(u => u.AccountName == username);

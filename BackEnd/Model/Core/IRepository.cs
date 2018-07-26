@@ -5,5 +5,7 @@
     public interface IRepository<T> where T : IEntity
     {
         IQueryable<T> GetAll();
+
+        T GetById(int id);
     }
 }

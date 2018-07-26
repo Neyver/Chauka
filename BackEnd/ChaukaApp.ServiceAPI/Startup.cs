@@ -14,9 +14,7 @@
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
+                defaults: new { id = RouteParameter.Optional });
             appBuilder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             appBuilder.UseWebApi(config);
         }
