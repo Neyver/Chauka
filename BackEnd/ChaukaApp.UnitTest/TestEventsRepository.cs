@@ -15,6 +15,7 @@
         {
             this.entities.Add(new Event()
             {
+                Id = 1,
                 NameEvent = "Event1",
                 StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
                 UserId = 1
