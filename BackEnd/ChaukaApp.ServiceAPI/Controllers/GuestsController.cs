@@ -9,7 +9,7 @@
     public class GuestsController : ApiController
     {
         // GET api/events
-        public IResult<EventGuests> Get(int userId)
+        public IResult<EventGuests> Get(int eventId)
         {
             IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
             return resultEvent;
