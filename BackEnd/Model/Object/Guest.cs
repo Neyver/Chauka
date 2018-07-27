@@ -13,5 +13,7 @@
 
         [Required]
         public int EventId { get; set; }
+
+        public bool? Confirmation { get; set; }
     }
 }
