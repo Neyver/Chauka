@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using Model.Core;
 
-    public class Guest
+    public class Guest : IEntity
     {
         [Key]
         public int Id { get; set; }
