@@ -1,4 +1,4 @@
-const Account = localStorage.getItem('Account');
+const userId = JSON.parse(localStorage.getItem('Account'))['Id'];
 
 var url = 'http://localhost:5387/api/events';
 
