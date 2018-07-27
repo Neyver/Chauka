@@ -11,6 +11,8 @@
 
         IEventsRepository<Event> EventRepository { get; set; }
 
+        IResult<Event> GetEvent(int eventId);
+
         IResult<UserEvent> GetUserEvents(int userId);
 
         ResultSimplified RegisterEvent(Event newEvent);
