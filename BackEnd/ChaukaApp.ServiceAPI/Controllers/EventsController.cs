@@ -27,7 +27,7 @@
             return resultEvent;
         }
 
-        // GET api/events?userId=1&userEvent=1
+        // GET api/events?userEvent=1
         [HttpGet]
         public IResult<Event> GetEvent(int eventId)
         {
@@ -36,7 +36,7 @@
             {
                 IEventHost eventHost = new EventHost();
 
-                //resultEvent = eventHost.GetEvent(userId, eventId);
+                resultEvent = eventHost.GetEvent(eventId);
             }
             catch (Exception)
             {
