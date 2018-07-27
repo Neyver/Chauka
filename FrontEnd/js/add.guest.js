@@ -1,6 +1,16 @@
-const userId = JSON.parse(localStorage.getItem('Account'))['Id'];
+const Account = localStorage.getItem('Account');
 
+console.log(Account);
 var url = 'http://localhost:5387/api/guests';
+
+
+function fillHeader() {
+  const account = JSON.parse(Account);
+  const headerAccount = document.getElementById('header-account');
+  let contentHeaderAccount = headerAccount.innerHTML;
+  contentHeaderAccount += account['Name'];
+  headerAccount.innerHTML = contentHeaderAccount;
+}
 
 const saveEvent = () => {
   var data = {};
