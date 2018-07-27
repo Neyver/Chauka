@@ -89,11 +89,11 @@
             context.Events.Add(event4);
             context.Events.Add(event5);
 
-            context.Guests.Add(new Guest() { EventId = 1, UserId = 1 });
-            context.Guests.Add(new Guest() { EventId = 1, UserId = 2 });
-            context.Guests.Add(new Guest() { EventId = 2, UserId = 1 });
-            context.Guests.Add(new Guest() { EventId = 2, UserId = 3 });
-            context.Guests.Add(new Guest() { EventId = 3, UserId = 3 });
+            context.Guests.Add(new Guest() { EventId = 1, UserId = 1, Confirmation = true });
+            context.Guests.Add(new Guest() { EventId = 1, UserId = 2, Confirmation = true });
+            context.Guests.Add(new Guest() { EventId = 2, UserId = 1, Confirmation = true });
+            context.Guests.Add(new Guest() { EventId = 2, UserId = 3, Confirmation = true });
+            context.Guests.Add(new Guest() { EventId = 3, UserId = 3, Confirmation = true });
 
             context.SaveChanges();
         }
