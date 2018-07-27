@@ -57,6 +57,37 @@
         }
         #endregion
 
+        #region Test Get Event
+        [TestMethod]
+        public void TestGetEventWhenEventDoesNotExistsRepositoryReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.EventRepository = new TestEventsRepository();
+            IResult<Event> result = eventHost.GetEvent(15);
+            Assert.AreEqual(false, result.Success);
+            Assert.AreEqual("Event not found", result.Message);
+        }
+
+        [TestMethod]
+        public void TestGetEventWhenInvalidEventIdReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.EventRepository = new TestEventsRepository();
+            IResult<Event> result = eventHost.GetEvent(0);
+            Assert.AreEqual(false, result.Success);
+            Assert.AreEqual("The event ID is not valid", result.Message);
+        }
+
+        [TestMethod]
+        public void TestGetEventWhenEventExistReturnIResultWithSuccessTrue()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.EventRepository = new TestEventsRepository();
+            IResult<Event> result = eventHost.GetEvent(1);
+            Assert.AreEqual(true, result.Success);
+        }
+        #endregion
+
         #region Test Register Event
         [TestMethod]
         public void TestRegisterEventWhenExceptionAppearsReturnIResultWithSuccessFalse()
