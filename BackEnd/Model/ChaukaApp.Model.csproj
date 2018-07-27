@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Core\IEntity.cs" />
     <Compile Include="Core\IEventsRepository.cs" />
+    <Compile Include="Core\IGuestRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Core\IUserRepository.cs" />
     <Compile Include="Object\Account.cs" />
