@@ -12,6 +12,38 @@
 
         public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
+        public IResult<Event> GetEvent(int eventId)
+        {
+            IResult<Event> eventsResult = new ResultEntity<Event>();
+            Event eventResponse = new Event();
+            if (eventId <= 0)
+            {
+                eventsResult.Message = "The event ID is not valid";
+                eventsResult.Success = false;
+                return eventsResult;
+            }
+
+            if (this.EventRepository == null)
+            {
+                this.EventRepository = new EventsRepository();
+            }
+
+            if (this.EventRepository.GetById(eventId) == null)
+
+            {
+                eventsResult.Message = "Event not found";
+                eventsResult.Success = false;
+                return eventsResult;
+            }
+
+            eventResponse = this.EventRepository.GetById(eventId);
+            eventsResult.Data = eventResponse;
+            eventsResult.Message = "Successful Data";
+            eventsResult.Success = true;
+
+            return eventsResult;
+        }
+
         public IResult<UserEvent> GetUserEvents(int userId)
         {
             IResult<UserEvent> eventsResult = new ResultEntity<UserEvent>();

@@ -23,8 +23,15 @@
                 AccountName = "steve2"
             };
 
+            var user2 = new User()
+            {
+                Name = "Juancito Pinto",
+                AccountName = "juancito"
+            };
+
             context.Users.Add(user);
             context.Users.Add(user1);
+            context.Users.Add(user2);
 
             var event1 = new Event()
             {
@@ -71,6 +78,12 @@
             context.Events.Add(event3);
             context.Events.Add(event4);
             context.Events.Add(event5);
+
+            context.Guests.Add(new Guest() { EventId = 1, UserId = 1 });
+            context.Guests.Add(new Guest() { EventId = 1, UserId = 2 });
+            context.Guests.Add(new Guest() { EventId = 2, UserId = 1 });
+            context.Guests.Add(new Guest() { EventId = 2, UserId = 3 });
+            context.Guests.Add(new Guest() { EventId = 3, UserId = 3 });
 
             context.SaveChanges();
         }
