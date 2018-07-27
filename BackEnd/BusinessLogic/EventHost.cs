@@ -9,10 +9,6 @@
 
     public class EventHost : IEventHost
     {
-        public IUserRepository<User> Repository { get; set; } = new UserRepository();
-
-        public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
-
         public EventHost()
         {
             if (this.EventRepository == null)
@@ -20,6 +16,10 @@
                 this.EventRepository = new EventsRepository();
             }
         }
+
+        public IUserRepository<User> Repository { get; set; } = new UserRepository();
+
+        public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
         public IResult<Event> GetEvent(int eventId)
         {
@@ -201,6 +201,56 @@
             resultGuestList.Success = true;
 
             return resultGuestList;
+        }
+
+        public ResultSimplified InviteGuest(Guest newGuest)
+        {
+            ResultSimplified result = new ResultSimplified();
+            var guests = new GuestRepository();
+
+            result.Success = false;
+            try
+            {
+                if (this.Repository != null || this.EventRepository != null)
+                {
+                    if (newGuest != null)
+                    {
+                        if (newGuest.UserId > 0)
+                        {
+                            if (newGuest.EventId > 0)
+                            {
+                                if (guests.Create(newGuest))
+                                {
+                                    result.Message = "Invitation sent.";
+                                }
+                            }
+                            else
+                            {
+                                result.Message = "The Event is not valid.";
+                            }
+                        }
+                        else
+                        {
+                            result.Message = "The User is not valid.";
+                        }
+                    }
+                    else
+                    {
+                        result.Message = "The register of the Guest can not be created.";
+                    }
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "It is not possible to access the data service.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Message = "Interal Exception: " + ex.Message;
+            }
+
+            return result;
         }
     }
 }
