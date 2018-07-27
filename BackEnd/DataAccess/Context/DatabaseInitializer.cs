@@ -53,8 +53,8 @@
             var event4 = new Event()
             {
                 NameEvent = "Event4",
-                StartDatetime = DateTime.Parse("26/07/2018 08:00", new CultureInfo("en-US")),
-                EndDatetime = DateTime.Parse("26/07/2018 17:00", new CultureInfo("en-US")),
+                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
+                EndDatetime = DateTime.Parse("07/26/2018 17:00", new CultureInfo("en-US")),
                 UserId = 1
             };
 
