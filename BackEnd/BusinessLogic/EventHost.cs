@@ -8,9 +8,9 @@
 
     public class EventHost : IEventHost
     {
-        public IUserRepository<User> Repository { get; set; }
+        public IUserRepository<User> Repository { get; set; } = new UserRepository();
 
-        public IEventsRepository<Event> EventRepository { get; set; }
+        public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
         public IResult<Account> Authentication(string accountName)
         {
@@ -95,7 +95,7 @@
                     {
                         if (newEvent.UserId > 0)
                         {
-                            var user = Repository.GetById(newEvent.UserId);
+                            var user = this.Repository.GetById(newEvent.UserId);
                             if (user != null)
                             {
                                 if (!string.IsNullOrEmpty(newEvent.NameEvent))
@@ -105,10 +105,10 @@
                                     {
                                         newEvent.EndDatetime = DateTime.Parse(newEvent.StartDatetime.ToString("yyyy-MM-dd h:mm"));
                                     }
-                                    bool res = EventRepository.Add(newEvent);
-                                    if (res)
+
+                                    if (this.EventRepository.Add(newEvent))
                                     {
-                                        EventRepository.SaveChanges();
+                                        this.EventRepository.SaveChanges();
                                         result.Message = "The Event was successfully registered.";
                                         result.Success = true;
                                     }
@@ -120,18 +120,18 @@
                             }
                             else
                             {
-                                result.Message = "The User can not to be found.";
+                                result.Message = "The User can not be found.";
                             }
                         }
                         else
                         {
                             if (newEvent.UserId < 0)
                             {
-                                result.Message = "The User Id can not to be negative.";
+                                result.Message = "The User Id can not be negative.";
                             }
                             else
                             {
-                                result.Message = "The User Id can not to be empty.";
+                                result.Message = "The User Id can not be empty.";
                             }
                         }
                     }
@@ -150,6 +150,7 @@
             {
                 result.Message = "Interal Exception: " + ex.Message;
             }
+
             return result;
         }
     }

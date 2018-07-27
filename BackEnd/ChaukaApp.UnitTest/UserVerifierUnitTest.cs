@@ -1,14 +1,14 @@
 ﻿namespace ChaukaApp.UnitTest
 {
+    using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using BusinessLogic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Model.Core;
     using Model.Object;
     using Model.Result;
-    using System;
-    using System.Globalization;
 
     [TestClass]
     public class UserVerifierUnitTest
@@ -48,6 +48,7 @@
         public void TestAuthenticationWhenRepositoryIsNullReturnIResultWithSuccessFalse()
         {
             IEventHost verifier = new EventHost();
+            verifier.Repository = null;
             IResult<Account> result = verifier.Authentication("USR1");
             Assert.AreEqual(false, result.Success);
             Assert.AreEqual("It is not possible to access the data service", result.Message);
@@ -112,7 +113,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "It is not possible to access the data service.");
+            Assert.AreEqual(result.Message, "Interal Exception: No connection string named 'ChaukaContext' could be found in the application config file.");
         }
 
         [TestMethod]
@@ -126,7 +127,6 @@
                 UserId = 10,
                 NameEvent = "New Event",
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
-
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "Interal Exception: Object reference not set to an instance of an object.");
@@ -143,7 +143,6 @@
                 UserId = 1,
                 NameEvent = "New Event",
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
-
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "It is not possible to access the data service.");
@@ -173,7 +172,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "The User Id can not to be empty.");
+            Assert.AreEqual(result.Message, "The User Id can not be empty.");
         }
 
         [TestMethod]
@@ -189,7 +188,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "The User Id can not to be negative.");
+            Assert.AreEqual(result.Message, "The User Id can not be negative.");
         }
 
         [TestMethod]
@@ -205,7 +204,7 @@
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "The User can not to be found.");
+            Assert.AreEqual(result.Message, "The User can not be found.");
         }
 
         [TestMethod]
@@ -217,7 +216,7 @@
             ResultSimplified result = eventHost.RegisterEvent(new Event()
             {
                 UserId = 1,
-                NameEvent = "",
+                NameEvent = string.Empty,
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
             });
             Assert.AreEqual(result.Success, false);
@@ -254,7 +253,6 @@
                 NameEvent = "New Event",
                 StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
                 EndDatetime = DateTime.Parse("07/28/2018 19:00", new CultureInfo("en-US")),
-
             };
 
             ResultSimplified result = eventHost.RegisterEvent(newEvent);
@@ -293,7 +291,7 @@
             return user;
         }
 
-        public void Update(User IEntity)
+        public void Update(User user)
         {
             throw new NotImplementedException();
         }
@@ -308,21 +306,21 @@
             this.entities.Add(new Event()
             {
                 NameEvent = "Event1",
-                StartDatetime = DateTime.Parse("08/07/2018 14:00", new CultureInfo("es-ES")),
+                StartDatetime = DateTime.Parse("07/08/2018 14:00", new CultureInfo("en-US")),
                 UserId = 1
             });
 
             this.entities.Add(new Event()
             {
                 NameEvent = "Event2",
-                StartDatetime = DateTime.Parse("26/07/2018 08:00", new CultureInfo("es-ES")),
+                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
                 UserId = 1
             });
 
             this.entities.Add(new Event()
             {
                 NameEvent = "Event3",
-                StartDatetime = DateTime.Parse("26/07/2018 08:00", new CultureInfo("es-ES")),
+                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
                 UserId = 1
             });
         }
