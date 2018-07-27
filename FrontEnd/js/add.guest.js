@@ -50,6 +50,6 @@ function getElement(name){
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
-const cancelEventCreation = () => {
+const cancelAddGuest = () => {
   window.location.href = 'info-event.html'
 }
