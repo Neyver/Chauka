@@ -1,9 +1,10 @@
 ﻿namespace DataAccess
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Model.Core;
-    using Model.Object;
+    using Model.Object;    
 
     public class GuestRepository : IGuestRepository<Guest>
     {
@@ -12,6 +13,19 @@
         public GuestRepository()
         {
             this.context = new DatabaseContext();
+        }
+
+        public void Create(Guest entity)
+        {
+            try
+            {
+                this.context.Set<Guest>().Add(entity);
+                this.context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public IQueryable<Guest> GetAll()
