@@ -22,19 +22,20 @@ const saveEvent = () => {
     body: json,
     headers: {'content-type': 'application/json'},
     method: 'POST'
-  }).then(data => {
-      console.log(data);
-      if(data['Success'] === true) {
-        console.log(data['Message']);
+  }).then(data => data.json())
+  .then(response => {
+      console.log(response);
+      if(response['Success'] === true) {
+        console.log(response['Message']);
         window.location.href = 'events.html';
       } else {
-        console.log(data['Message']);
-        alert(data['Message']);
+        console.log(response['Message']);
+        alert(response['Message']);
       }
     })
     .catch(error => {
       console.log(error);
-      alert(error);
+      alert("Error: "+error);
     })
 }
 
