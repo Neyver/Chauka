@@ -48,9 +48,10 @@
         public void TestAuthenticationWhenRepositoryIsNullReturnIResultWithSuccessFalse()
         {
             IEventHost verifier = new EventHost();
+            verifier.Repository = null;
             IResult<Account> result = verifier.Authentication("USR1");
             Assert.AreEqual(false, result.Success);
-            //Assert.AreEqual("It is not possible to access the data service", result.Message);
+            Assert.AreEqual("It is not possible to access the data service", result.Message);
         }
         #endregion
 
