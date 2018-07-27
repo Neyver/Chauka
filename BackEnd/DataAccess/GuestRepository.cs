@@ -40,10 +40,10 @@
             return this.context.Guests.Find(id);
         }
 
-        public IEnumerable<Guest> GetGuestByEventId(int eventId)
+        public IEnumerable<Guest> GetGuestsByEventId(int eventId)
         {
-            var guest = this.context.Set<Guest>();
-            return guest.Where(user => user.UserId == eventId);
+            var guests = this.context.Set<Guest>();
+            return guests.Where(guest => guest.EventId == eventId);
         }
     }
 }
