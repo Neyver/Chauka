@@ -1,6 +1,7 @@
 ﻿namespace BusinessLogic
 {
     using System;
+    using System.Collections.Generic;
     using DataAccess;
     using Model.Core;
     using Model.Object;
@@ -11,6 +12,14 @@
         public IUserRepository<User> Repository { get; set; } = new UserRepository();
 
         public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
+
+        public EventHost()
+        {
+            if (this.EventRepository == null)
+            {
+                this.EventRepository = new EventsRepository();
+            }
+        }
 
         public IResult<Event> GetEvent(int eventId)
         {
@@ -150,6 +159,48 @@
             }
 
             return result;
+        }
+
+        public IResult<EventGuests> GetGuestList(int eventId)
+        {
+            IResult<EventGuests> resultGuestList = new ResultEntity<EventGuests>();
+
+            if (eventId <= 0)
+            {
+                resultGuestList.Message = "Event ID is not valid.";
+                resultGuestList.Success = false;
+                return resultGuestList;
+            }
+
+            if (this.EventRepository.GetById(eventId) == null)
+            {
+                resultGuestList.Message = "Event not found.";
+                resultGuestList.Success = false;
+                return resultGuestList;
+            }
+
+            List<EventGuest> userGuestList = new List<EventGuest>();
+            var guests = new GuestRepository();
+            var guestList = guests.GetGuestsByEventId(eventId);
+            var user = new UserRepository();
+
+            foreach (var item in guestList)
+            {
+                User userGuest = user.GetById(item.UserId);
+                EventGuest eventGuest = new EventGuest();
+                eventGuest.Id = userGuest.Id;
+                eventGuest.Name = userGuest.Name;
+                eventGuest.AcountName = userGuest.AccountName;
+                userGuestList.Add(eventGuest);
+            }
+
+            EventGuests guestListEvent = new EventGuests();
+            guestListEvent.Guests = userGuestList;
+            resultGuestList.Data = guestListEvent;
+            resultGuestList.Message = "Successful Data.";
+            resultGuestList.Success = true;
+
+            return resultGuestList;
         }
     }
 }
