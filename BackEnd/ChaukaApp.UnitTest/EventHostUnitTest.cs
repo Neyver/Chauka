@@ -1,60 +1,16 @@
 ﻿namespace ChaukaApp.UnitTest
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
     using BusinessLogic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Model.Core;
     using Model.Object;
     using Model.Result;
 
     [TestClass]
-    public class UserVerifierUnitTest
+    public class EventHostUnitTest
     {
-        #region Test User autentication 
-        [TestMethod]
-        public void TestAuthenticationWhenUserNotExistReturnIResultWithSuccessFalse()
-        {
-            IEventHost verifier = new EventHost();
-            verifier.Repository = new TestUserRepository();
-            IResult<Account> result = verifier.Authentication("USR4");
-            Assert.AreEqual(false, result.Success);
-            Assert.AreEqual("User not found", result.Message);
-        }
-
-        [TestMethod]
-        public void TestAuthenticationWhenUserExistReturnIResultWithSuccessTrue()
-        {
-            IEventHost verifier = new EventHost();
-            verifier.Repository = new TestUserRepository();
-            IResult<Account> result = verifier.Authentication("USR1");
-            Assert.AreEqual(true, result.Success);
-            Assert.AreEqual("Successful sign in", result.Message);
-        }
-
-        [TestMethod]
-        public void TestAuthenticationWhenAccountNameIsEmptyReturnIResultWithSuccessFalse()
-        {
-            IEventHost verifier = new EventHost();
-            verifier.Repository = new TestUserRepository();
-            IResult<Account> result = verifier.Authentication(string.Empty);
-            Assert.AreEqual(false, result.Success);
-            Assert.AreEqual("The account name must not be empty", result.Message);
-        }
-
-        [TestMethod]
-        public void TestAuthenticationWhenRepositoryIsNullReturnIResultWithSuccessFalse()
-        {
-            IEventHost verifier = new EventHost();
-            verifier.Repository = null;
-            IResult<Account> result = verifier.Authentication("USR1");
-            Assert.AreEqual(false, result.Success);
-            Assert.AreEqual("It is not possible to access the data service", result.Message);
-        }
-        #endregion
-
         #region Test Get Events User
         [TestMethod]
         public void TestGetUserEventsWhenUserNotExistsRepositoryReturnIResultWithSuccessFalse()
@@ -110,7 +66,7 @@
             {
                 UserId = 10,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "Interal Exception: No connection string named 'ChaukaContext' could be found in the application config file.");
@@ -126,7 +82,7 @@
             {
                 UserId = 10,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "Interal Exception: Object reference not set to an instance of an object.");
@@ -142,7 +98,7 @@
             {
                 UserId = 1,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "It is not possible to access the data service.");
@@ -169,7 +125,7 @@
             {
                 UserId = 0,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The User Id can not be empty.");
@@ -185,7 +141,7 @@
             {
                 UserId = -1,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The User Id can not be negative.");
@@ -201,7 +157,7 @@
             {
                 UserId = 10,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The User can not be found.");
@@ -217,7 +173,7 @@
             {
                 UserId = 1,
                 NameEvent = string.Empty,
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The Event name must not be empty.");
@@ -233,7 +189,7 @@
             {
                 UserId = 1,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
             };
             ResultSimplified result = eventHost.RegisterEvent(newEvent);
             Assert.AreEqual(result.Success, true);
@@ -251,8 +207,8 @@
             {
                 UserId = 1,
                 NameEvent = "New Event",
-                StartDatetime = DateTime.Parse("07/28/2018 14:00", new CultureInfo("en-US")),
-                EndDatetime = DateTime.Parse("07/28/2018 19:00", new CultureInfo("en-US")),
+                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
+                EndDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
             };
 
             ResultSimplified result = eventHost.RegisterEvent(newEvent);
@@ -260,98 +216,5 @@
             Assert.AreEqual(result.Message, "The Event was successfully registered.");
         }
         #endregion
-    }
-
-    public class TestUserRepository : IUserRepository<User>
-    {
-        private List<User> entities = new List<User>();
-
-        public TestUserRepository()
-        {
-            this.entities.Add(new User() { Id = 1, AccountName = "USR1", Name = "User1" });
-            this.entities.Add(new User() { Id = 2, AccountName = "USR2", Name = "User2" });
-            this.entities.Add(new User() { Id = 3, AccountName = "USR3", Name = "User3" });
-        }
-
-        private static IQueryable<User> Entities { get; set; }
-
-        IQueryable<User> IRepository<User>.GetAll()
-        {
-            return Entities;
-        }
-
-        public User GetById(int id)
-        {
-            return this.entities.Find(elem => elem.Id == id);
-        }
-
-        public User GetUserByAccountName(string accountName)
-        {
-            User user = this.entities.Find(element => element.AccountName == accountName);
-            return user;
-        }
-
-        public void Update(User user)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class TestEventsRepository : IEventsRepository<Event>
-    {
-        private List<Event> entities = new List<Event>();
-
-        public TestEventsRepository()
-        {
-            this.entities.Add(new Event()
-            {
-                NameEvent = "Event1",
-                StartDatetime = DateTime.Parse("07/08/2018 14:00", new CultureInfo("en-US")),
-                UserId = 1
-            });
-
-            this.entities.Add(new Event()
-            {
-                NameEvent = "Event2",
-                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
-                UserId = 1
-            });
-
-            this.entities.Add(new Event()
-            {
-                NameEvent = "Event3",
-                StartDatetime = DateTime.Parse("07/26/2018 08:00", new CultureInfo("en-US")),
-                UserId = 1
-            });
-        }
-
-        private static IQueryable<Event> Entities { get; set; }
-
-        public bool Add(Event eventObject)
-        {
-            this.entities.Add(eventObject);
-            return true;
-        }
-
-        public IQueryable<Event> GetAll()
-        {
-            return null;
-        }
-
-        public Event GetById(int id)
-        {
-            return this.entities.Find(elem => elem.Id == id);
-        }
-
-        public IEnumerable<Event> GetEventsByUserId(int userId)
-        {
-            List<Event> events = this.entities.FindAll(elem => elem.UserId == userId);
-            return events;
-        }
-
-        public int SaveChanges()
-        {
-            return 1;
-        }
     }
 }
