@@ -32,10 +32,10 @@
         public void Update(User user)
         {
             this.context.Users.Attach(user);
-            DbEntityEntry<User> entry = context.Entry(user);
+            DbEntityEntry<User> entry = this.context.Entry(user);
             entry.Property(e => e.Latitude).IsModified = true;
             entry.Property(e => e.Longitude).IsModified = true;
-            context.SaveChanges();
+            this.context.SaveChanges();
         }
     }
 }
