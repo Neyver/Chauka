@@ -4,8 +4,8 @@
 
     public class EventGuests
     {
-        public int UserId { get; set; }
+        public int EventId { get; set; }
 
-        public IEnumerable<Guest> Guests { get; set; }
+        public IEnumerable<EventGuest> Guests { get; set; }
     }
 }
