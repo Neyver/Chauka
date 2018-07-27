@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Model.Core;
-    using Model.Object;    
+    using Model.Object;
 
     public class GuestRepository : IGuestRepository<Guest>
     {
@@ -15,7 +15,7 @@
             this.context = new DatabaseContext();
         }
 
-        public void Create(Guest entity)
+        public bool Create(Guest entity)
         {
             try
             {
@@ -24,8 +24,10 @@
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
+
+            return true;
         }
 
         public IQueryable<Guest> GetAll()
