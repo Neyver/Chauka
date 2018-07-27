@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Add Guest</title>
+    <link href="./css/main.css" rel="stylesheet" />
+  </head>
+  <body onload="fillHeader()">
+    <header>
+      <div class="container">
+        <div class="header-menu">
+          <ul>
+            <li>
+              <i class="material-icons">place</i>
+              <a href="position.html">Mark Position</a>
+            </li>
+            <li id="header-account">
+              <ul>
+                <li>Sign out</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="login-wrapper">
+      <div class="login-form">
+        <h2 style="text-align: left;">Add Guest</h2>
+        <div>
+          <div class="form-group login-input">
+            <label>Account name:</label>
+            <div class="form-input">
+              <input id="userId" class="input" type="text" />
+            </div>
+          </div>
+          <div class="buttons-container center">
+            <button onclick="validateGuest()">Add Guest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
