@@ -1,0 +1,28 @@
+.login-wrapper {
+  padding-top: 80px;
+}
+
+.login-form {
+  height: 230px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  z-index: 100;
+}
+
+.login-form > div {
+  background-color: #f6f6f6;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  padding: 20px 0;
+}
+
+.login-input {
+  padding: 10px 40px;
+}
+
+.login-form h2 {
+  opacity: .8;
+  text-align: center;
+}

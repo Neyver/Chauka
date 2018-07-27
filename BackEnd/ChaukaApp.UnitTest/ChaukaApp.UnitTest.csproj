@@ -48,7 +48,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserVerifierUnitTest.cs" />
+    <Compile Include="TestEventsRepository.cs" />
+    <Compile Include="TestUserRepository.cs" />
+    <Compile Include="UserAuthenticatorUnitTest.cs" />
+    <Compile Include="EventHostUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
