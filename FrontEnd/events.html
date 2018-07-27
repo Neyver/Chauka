@@ -9,21 +9,23 @@
   </head>
   <body onload="fillPage();">
     <div class="body-header">
-      <div class="header-menu">
-        <ul>
-          <li>
-            <span>
-              <i class="material-icons">add_location</i>
-            </span>
-            <a href="position.html">Mark Position</a>
-          </li>
-          <li id="header-account">
+      <header>
+        <div class="container">
+          <div class="header-menu">
             <ul>
-              <li>Sign out</li>
+              <li>
+                <i class="material-icons">place</i>
+                <a href="position.html">Mark Position</a>
+              </li>
+              <li id="header-account">
+                <ul>
+                  <li>Sign out</li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </div>
+          </div>
+        </div>
+      </header>
     </div>
     <div class="body-events">
       <div class="events-list">
@@ -43,7 +45,7 @@
               </tr>
             </thead>
             <tbody id="table-events-user">
-              
+
             </tbody>
           </table>
         </div>
