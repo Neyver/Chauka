@@ -6,6 +6,6 @@
     {
         bool Create(T entity);
 
-        IEnumerable<T> GetGuestByEventId(int eventId);
+        IEnumerable<T> GetGuestsByEventId(int eventId);
     }
 }
