@@ -12,7 +12,7 @@ function fillHeader() {
 
 const validateGuest = () => {
 	var urlAccount = 'http://localhost:5387/api/accounts?accountName='+document.getElementById("accountName").value;
-	var urlGuest = 'http://localhost:5387/api/guests?eventId='+getElement('eventId');
+	var urlGuest = 'http://localhost:5387/api/guests?eventId='+ getElement('eventId');
 	var data = {};
 	fetch(urlAccount)
 		.then(data => data.json())
@@ -42,7 +42,7 @@ const validateGuest = () => {
 		  console.log(response);
 		  if(response['Success'] === true) {
 			console.log(response['Message']);
-			window.location.href = 'info-event.html';
+			window.location.href = 'info-event.html?eventId='+ getElement('eventId');
 		  } else {
 			console.log(response['Message']);
 			alert(response['Message']);
