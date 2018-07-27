@@ -25,5 +25,24 @@
 
             return resultEvent;
         }
+
+        // POST api/guests
+        public ResultSimplified Post(Guest guest)
+        {
+            ResultSimplified result = new ResultSimplified();
+            
+            try
+            {
+                IEventHost eventHost = new EventHost();
+                result = eventHost.InviteGuest(guest);
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+                result.Message = "The service could not respond to your request";
+            }
+
+            return result;
+        }
     }
 }

@@ -18,5 +18,7 @@
         ResultSimplified RegisterEvent(Event newEvent);
 
         IResult<EventGuests> GetGuestList(int eventId);
+
+        ResultSimplified InviteGuest(Guest guest);
     }
 }

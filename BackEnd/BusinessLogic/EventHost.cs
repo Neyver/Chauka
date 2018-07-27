@@ -202,5 +202,50 @@
 
             return resultGuestList;
         }
+
+        public ResultSimplified InviteGuest(Guest newGuest)
+        {
+            ResultSimplified result = new ResultSimplified();
+            result.Success = false;
+            try
+            {
+                if (this.Repository != null || this.EventRepository != null)
+                {
+                    if (newGuest != null)
+                    {
+                        if (newGuest.UserId > 0)
+                        {
+                            if (newGuest.EventId > 0)
+                            {
+                                
+                            }
+                            else
+                            {
+                                result.Message = "The Event is not valid.";
+                            }
+                        }
+                        else
+                        {
+                            result.Message = "The User is not valid.";
+                        }
+                    }
+                    else
+                    {
+                        result.Message = "The register of the Guest can not be created.";
+                    }
+                }
+                else
+                {
+                    result.Success = false;
+                    result.Message = "It is not possible to access the data service.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Message = "Interal Exception: " + ex.Message;
+            }
+
+            return result;
+        }
     }
 }
