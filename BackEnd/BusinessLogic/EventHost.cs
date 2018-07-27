@@ -194,6 +194,7 @@
             }
 
             EventGuests guestListEvent = new EventGuests();
+            guestListEvent.EventId = eventId;
             guestListEvent.Guests = userGuestList;
             resultGuestList.Data = guestListEvent;
             resultGuestList.Message = "Successful Data.";

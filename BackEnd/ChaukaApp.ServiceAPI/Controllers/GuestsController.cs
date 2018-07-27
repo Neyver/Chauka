@@ -8,14 +8,14 @@
 
     public class GuestsController : ApiController
     {
-        // GET api/events
+        // GET api/guests?eventId=1
         public IResult<EventGuests> Get(int eventId)
         {
             IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
             IEventHost eventHost = new EventHost();
             try
             {
-                //resultEvent = eventHost.GetGuests(eventId);
+                resultEvent = eventHost.GetGuestList(eventId);
             }
             catch (Exception)
             {
