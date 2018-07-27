@@ -1,9 +1,8 @@
 const Account = localStorage.getItem('Account');
-const UserEvents = localStorage.getItem('EventsUser');
 console.log(Account);
 
 function fillPage() {
-  fillHeader();
+    fillHeader();
   getEvents();
 }
 
@@ -45,7 +44,7 @@ function fillTableEvents(events) {
         <td>' + event['NameEvent'] + '</td>\
         <td>' + event['StartDatetime'] + '</td>\
         <td>' + event['EndDatetime'] + '</td>\
-        <td> <a href="info-event?Id=' + event['Id'] + '.html"> <i class="material-icons">insert_drive_file</i> </a> </td>\
+        <td> <a href="info-event.html?Id=' + event['Id'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
       </tr>'
     });
     tableEvents.innerHTML = contentTable;
