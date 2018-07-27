@@ -27,7 +27,7 @@
             return resultEvent;
         }
 
-        // GET api/events?userEvent=1
+        // GET api/events?eventId=1
         [HttpGet]
         public IResult<Event> GetEvent(int eventId)
         {

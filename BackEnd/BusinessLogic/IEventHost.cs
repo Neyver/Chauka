@@ -3,7 +3,6 @@
     using Model.Core;
     using Model.Object;
     using Model.Result;
-    using System.Collections.Generic;
 
     public interface IEventHost
     {
