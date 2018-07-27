@@ -8,9 +8,9 @@
 
     public class EventHost : IEventHost
     {
-        public IUserRepository<User> Repository { get; set; }
+        public IUserRepository<User> Repository { get; set; } = new UserRepository();
 
-        public IEventsRepository<Event> EventRepository { get; set; }
+        public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
         public IResult<Account> Authentication(string accountName)
         {
@@ -120,18 +120,18 @@
                             }
                             else
                             {
-                                result.Message = "The User can not to be found.";
+                                result.Message = "The User can not be found.";
                             }
                         }
                         else
                         {
                             if (newEvent.UserId < 0)
                             {
-                                result.Message = "The User Id can not to be negative.";
+                                result.Message = "The User Id can not be negative.";
                             }
                             else
                             {
-                                result.Message = "The User Id can not to be empty.";
+                                result.Message = "The User Id can not be empty.";
                             }
                         }
                     }
