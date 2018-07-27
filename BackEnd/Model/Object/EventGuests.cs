@@ -6,6 +6,6 @@
     {
         public int UserId { get; set; }
 
-        public IEnumerable<Guest> Guest { get; set; }
+        public IEnumerable<Guest> Guests { get; set; }
     }
 }
