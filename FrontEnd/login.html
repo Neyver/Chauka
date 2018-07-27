@@ -6,20 +6,22 @@
     <link rel="stylesheet" href="css/style-login.css">
     <script src="js/initialize-login.js"></script>
   </head>
-  <body>
+  <body onload="setFormLogin()">
     <div class="body-header">
     </div>
-    <div class="login-page">
-      <div class="login-container">
-        <a class="title-login"> Sign in to Chauka</a>
-        <div class="form">
-          <div class="login-form">
-          <div class="col-10">
-            <div class="label">Account name</div>
-            <input id="userId" class="input" type="text" placeholder="JuanPerez"/>
+    <div class="login-wrapper">
+      <div class="login-form">
+        <h2>Sign in to Chauka</h2>
+        <div>
+          <div class="form-group login-input">
+            <label>Account name:</label>
+            <div class="form-input">
+              <input id="userId" class="input" type="text" />
             </div>
+          </div>
+          <div class="buttons-container center">
             <button onclick="validateLogin()">Sign In</button>
-            </div>
+          </div>
         </div>
       </div>
     </div>
