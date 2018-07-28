@@ -3,9 +3,10 @@ var eventId;
 
 function fillPage() {
     fillHeader();
-    eventId = getElement("Id");
+    eventId = getElement("eventId");
     console.log(eventId);
     getEventById();
+    getUsers();
 }
 
 function fillHeader() {
@@ -35,6 +36,8 @@ function getEventById() {
         })
 }
 
+
+
 function getElement(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -43,7 +46,6 @@ function getElement(name) {
 }
 
 function fillEvents(data) {
-    console.log('asd');
     if (data !== null) {
         let nameEvent = document.getElementById('name-event');
         nameEvent.innerHTML = data.NameEvent;
@@ -65,4 +67,40 @@ function getMap(data) {
 
 function cancelPosition() {
     window.location.href = 'events.html'
+}
+
+
+function getUsers() {
+    console.log(eventId);
+    fetch('http://localhost:5387/api/guests?eventId=' + eventId)
+        .then(response => response.json())
+        .then(data => {
+            if (data['Success'] === true) {
+                console.log(data['Message']);
+                fillTableEvents(data['Data']['Guests']);
+            } else {
+                console.log(data['Message']);
+                alert(data['Message']);
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            alert(error);
+        })
+}
+
+function fillTableEvents(events) {
+    if (events !== null) {
+        let tableEvents = document.getElementById('table-user-by-event');
+        let contentTable = "";
+        events.forEach((event) => {
+            contentTable += '<tr>\
+        <td>' + event['Name'] + '</td>\
+        </tr>'
+        });
+        tableEvents.innerHTML = contentTable;
+    }
+}
+function AddGuest() {
+    window.location.href = 'add-guest.html?eventId=' + eventId;
 }

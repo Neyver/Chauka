@@ -1,53 +1,62 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Details Event</title>
-        <link href="./css/main.css" rel="stylesheet" />
-        <script src="./js/details-event.js" type="text/javascript"></script>
-    </head>
-    <body onload="fillPage()">
-        <header>
-            <div class="container">
-                <div class="header-menu">
-                    <ul>
-                        <li>
-                            <i class="material-icons">place</i>
-                            <a href="position.html">Mark Position</a>
-                        </li>
-                        <li id="header-account">
-                            <ul>
-                                <li>Sign out</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Details Event</title>
+    <link href="./css/main.css" rel="stylesheet" />
+    <script src="./js/details-event.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/detail-event-list.js"></script>
+    <link rel="stylesheet" href="css/style-detail-event-list.css">
+</head>
+<body onload="fillPage()">
+    <header>
+        <div class="container">
+            <div class="header-menu">
+                <ul>
+                    <li>
+                        <i class="material-icons">place</i>
+                        <a href="position.html">Mark Position</a>
+                    </li>
+                    <li id="header-account">
+                        <ul>
+                            <li>Sign out</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </header>
-        <div class="wrapper">
-            <div class="container">
-                <h2 class="title">
-                    Details Event
-                </h2>
-                <div class="form-container">
-                    <div class="left-form">
-                        <div class="form-group">
-                            <label>Event Name:</label>
-                            <div class="datetime-input">
-                                <span id="name-event"></span>
-                            </div>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="container">
+            <h2 class="title">
+                Details Event
+            </h2>
+            <div class="form-container">
+                <div class="left-form">
+                    <div class="form-group">
+                        <label>Event Name:</label>
+                        <div class="datetime-input">
+                            <span id="name-event"></span>
                         </div>
-                        <div class="form-group">
-                            <label>Start Datetime:</label>
-                            <div class="datetime-input">
-                                <span id="start-date"></span>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Datetime:</label>
+                        <div class="datetime-input">
+                            <span id="start-date"></span>
                         </div>
-                        <div class="form-group">
-                            <label>End Datetime:</label>
-                            <div class="datetime-input">
-                                <span id="end-date"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>End Datetime:</label>
+                        <div class="datetime-input">
+                            <span id="end-date"></span>
+                        </div>
+                    </div>
+
+                    <div class="events-list">
+                        <div class="row title">
+                            <div class="col-10">
+                                <span></span>
                             </div>
                         </div>
                         <div class="events-table">
@@ -60,21 +69,28 @@
                                 <tbody id="table-user-by-event"></tbody>
                             </table>
                         </div>
+                        <div class="row events-button">
+                            <div class="col-10">
+                                <button onclick="AddGuest()">Add Guest</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="right-map">
-                        <label>Event Location</label>
-                        <div id="map"></div>
-                    </div>
-                </div>
-                <div class="buttons-container right">
-                    <input id="latitude" type="hidden" />
-                    <input id="longitude" type="hidden" />
-                    <button onclick="cancelPosition()">Back</button>
                 </div>
 
+                <div class="right-map">
+                    <label>Event Location</label>
+                    <div id="map"></div>
+                </div>
             </div>
+            <div class="buttons-container right">
+                <input id="latitude" type="hidden" />
+                <input id="longitude" type="hidden" />
+                <button onclick="cancelPosition()">Back</button>
+            </div>
+
         </div>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP7gY7O3qLyFgQY2_W3KtophwT5Lwo0C0"></script>
-        <script src="./js/google.map.js" type="text/javascript"></script>
-    </body>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP7gY7O3qLyFgQY2_W3KtophwT5Lwo0C0"></script>
+    <script src="./js/google.map.js" type="text/javascript"></script>
+</body>
 </html>

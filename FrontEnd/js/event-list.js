@@ -44,7 +44,7 @@ function fillTableEvents(events) {
         <td>' + event['NameEvent'] + '</td>\
         <td>' + event['StartDatetime'] + '</td>\
         <td>' + event['EndDatetime'] + '</td>\
-        <td> <a href="info-event.html?Id=' + event['Id'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
+        <td> <a href="info-event.html?eventId=' + event['Id'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
       </tr>'
     });
     tableEvents.innerHTML = contentTable;
