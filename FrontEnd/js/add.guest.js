@@ -20,8 +20,9 @@ const validateGuest = () => {
 			console.log(responseText)
 			let result = responseText;
 			if (result.Success===true) {
-				let userId = result.Data.UserId;
-				console.log(JSON.stringify(result.Data));	
+				let userId = result.Data.Id;
+				console.log(JSON.stringify(result.Data));
+				console.log(userId)
 				data.EventId = getElement('eventId');
 				data.UserId = userId;
 				var json = JSON.stringify(data);
