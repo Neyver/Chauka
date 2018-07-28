@@ -221,6 +221,7 @@
                             {
                                 if (guests.Create(newGuest))
                                 {
+                                    result.Success = true;
                                     result.Message = "Invitation sent.";
                                 }
                             }

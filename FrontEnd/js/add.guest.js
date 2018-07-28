@@ -1,8 +1,6 @@
 const Account = localStorage.getItem('Account');
 
 console.log(Account);
-var url = 'http://localhost:5387/api/guests';
-
 
 function fillHeader() {
   const account = JSON.parse(Account);
@@ -12,35 +10,49 @@ function fillHeader() {
   headerAccount.innerHTML = contentHeaderAccount;
 }
 
-const saveEvent = () => {
-  var data = {};
-
-  var accountName = document.getElementById("accountName").value
-  
-  data.EventId = getElement('eventId');
-  data.AccountName = accountName;
-
-  var json = JSON.stringify(data);
-  console.log(json);
-  fetch(url, {
-    body: json,
-    headers: {'content-type': 'application/json'},
-    method: 'POST'
-  }).then(data => data.json())
-  .then(response => {
-      console.log(response);
-      if(response['Success'] === true) {
-        console.log(response['Message']);
-        window.location.href = 'info-event.html';
-      } else {
-        console.log(response['Message']);
-        alert(response['Message']);
-      }
-    })
-    .catch(error => {
-      console.log(error);
-      alert("Error: "+error);
-    })
+const validateGuest = () => {
+	var urlAccount = 'http://localhost:5387/api/accounts?accountName='+document.getElementById("accountName").value;
+	var urlGuest = 'http://localhost:5387/api/guests?eventId='+ getElement('eventId');
+	var data = {};
+	fetch(urlAccount)
+		.then(data => data.json())
+		.then((responseText) => {
+			console.log(responseText)
+			let result = responseText;
+			if (result.Success===true) {
+				let userId = result.Data.Id;
+				console.log(JSON.stringify(result.Data));
+				console.log(userId)
+				data.EventId = getElement('eventId');
+				data.UserId = userId;
+				var json = JSON.stringify(data);
+				console.log(json);  
+			return fetch(urlGuest, {
+					body: json,
+					headers: {'content-type': 'application/json'},
+					method: 'POST'
+				  })
+				  return Promise.resolve("asdaas");
+			}
+			else {
+				alert("ERROR: \n"+result.Message);
+			}
+		})
+		.then((data) => data.json())
+		.then(response => {
+		  console.log(response);
+		  if(response['Success'] === true) {
+			console.log(response['Message']);
+			window.location.href = 'info-event.html?eventId='+ getElement('eventId');
+		  } else {
+			console.log(response['Message']);
+			alert(response['Message']);
+		  }
+		})
+	.catch(error => {
+		console.log(error);
+		alert("Error: "+error);
+    });
 }
 
 function getElement(name){
