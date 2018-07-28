@@ -3,7 +3,6 @@
     using Model.Core;
     using Model.Object;
     using Model.Result;
-    using System.Collections.Generic;
 
     public interface IEventHost
     {
@@ -18,5 +17,7 @@
         ResultSimplified RegisterEvent(Event newEvent);
 
         IResult<EventGuests> GetGuestList(int eventId);
+
+        ResultSimplified InviteGuest(Guest guest);
     }
 }
