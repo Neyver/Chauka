@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbConnection.cs" />
+    <Compile Include="IInvitationsDelivery.cs" />
+    <Compile Include="InvitationsDelivery.cs" />
     <Compile Include="IEventHost.cs" />
     <Compile Include="IMapPositioner.cs" />
     <Compile Include="IUserAuthenticator.cs" />

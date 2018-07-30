@@ -21,6 +21,8 @@
 
         public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
+        public IGuestRepository<Guest> GuestRepository { get; set; } = new GuestRepository();
+
         public IResult<Event> GetEvent(int eventId)
         {
             IResult<Event> eventsResult = new ResultEntity<Event>();
@@ -179,13 +181,11 @@
             }
 
             List<GuestInformation> userGuestList = new List<GuestInformation>();
-            var guests = new GuestRepository();
-            var guestList = guests.GetGuestsByEventId(eventId);
-            var user = new UserRepository();
+            var guestList = this.GuestRepository.GetGuestsByEventId(eventId);
 
             foreach (var item in guestList)
             {
-                User userGuest = user.GetById(item.UserId);
+                User userGuest = this.Repository.GetById(item.UserId);
                 GuestInformation eventGuest = new GuestInformation();
                 eventGuest.Id = userGuest.Id;
                 eventGuest.Name = userGuest.Name;
@@ -206,12 +206,11 @@
         public ResultSimplified InviteGuest(Guest newGuest)
         {
             ResultSimplified result = new ResultSimplified();
-            var guests = new GuestRepository();
 
             result.Success = false;
             try
             {
-                if (this.Repository != null || this.EventRepository != null)
+                if (this.GuestRepository != null)
                 {
                     if (newGuest != null)
                     {
@@ -219,9 +218,10 @@
                         {
                             if (newGuest.EventId > 0)
                             {
-                                if (!guests.Equals(newGuest))
+                                if (!this.GuestRepository.Exist(newGuest))
                                 {
-                                    if (guests.Create(newGuest))
+                                    newGuest.Status = "PENDING";
+                                    if (this.GuestRepository.Create(newGuest))
                                     {
                                         result.Success = true;
                                         result.Message = "Invitation sent.";
@@ -253,7 +253,6 @@
                 }
                 else
                 {
-                    result.Success = false;
                     result.Message = "It is not possible to access the data service.";
                 }
             }

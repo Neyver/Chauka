@@ -7,5 +7,7 @@
         bool Create(T entity);
 
         IEnumerable<T> GetGuestsByEventId(int eventId);
+
+        bool Exist(T entity);
     }
 }

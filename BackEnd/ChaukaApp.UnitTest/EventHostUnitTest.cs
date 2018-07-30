@@ -1,7 +1,6 @@
 ﻿namespace ChaukaApp.UnitTest
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using BusinessLogic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -253,8 +252,7 @@
         public void TestInviteGuestWhenRepositortesAreNullReturnIResultWithSuccessFalse()
         {
             IEventHost eventHost = new EventHost();
-            eventHost.Repository = null;
-            eventHost.EventRepository = null;
+            eventHost.GuestRepository = null;
             ResultSimplified result = eventHost.InviteGuest(new Guest()
             {
                 UserId = 1,
@@ -269,8 +267,7 @@
         public void TestInviteGuestWhenGuestIsNullReturnIResultWithSuccessFalse()
         {
             IEventHost eventHost = new EventHost();
-            eventHost.Repository = new TestUserRepository();
-            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
             ResultSimplified result = eventHost.InviteGuest(null);
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The Guest can not be null.");
@@ -280,8 +277,7 @@
         public void TestInviteGuestWhenUserIdIsNegativeReturnIResultWithSuccessFalse()
         {
             IEventHost eventHost = new EventHost();
-            eventHost.Repository = new TestUserRepository();
-            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
             ResultSimplified result = eventHost.InviteGuest(new Guest()
             {
                 UserId = -1,
@@ -296,8 +292,7 @@
         public void TestInviteGuestWheneEventIdIsNegativeReturnIResultWithSuccessFalse()
         {
             IEventHost eventHost = new EventHost();
-            eventHost.Repository = new TestUserRepository();
-            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
             ResultSimplified result = eventHost.InviteGuest(new Guest()
             {
                 UserId = 1,
@@ -312,8 +307,23 @@
         public void TestInviteGuestWhenGuestIsValidReturnIResultWithSuccessTrue()
         {
             IEventHost eventHost = new EventHost();
-            eventHost.Repository = new TestUserRepository();
-            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 4,
+                EventId = 1,
+                Status = "PENDING"
+            });
+
+            Assert.AreEqual(result.Success, true);
+            Assert.AreEqual(result.Message, "Invitation sent.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenExistInvitationReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
             ResultSimplified result = eventHost.InviteGuest(new Guest()
             {
                 UserId = 1,
@@ -321,8 +331,65 @@
                 Status = "PENDING"
             });
 
-            Assert.AreEqual(result.Success, true);
-            Assert.AreEqual(result.Message, "Invitation sent.");
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The invitation really exist.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenFailRegisterReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = 5,
+                Status = null
+            });
+
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The register of the Guest can not be created.");
+        }
+        #endregion
+
+        #region Test Get Guest List
+        [TestMethod]
+        public void TestGetGuestListWhenExceptionAppearsReturnEventIdIsNotValid()
+        {
+            IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
+            resultEvent = eventHost.GetGuestList(-1);
+            Assert.AreEqual(resultEvent.Message, "Event ID is not valid.");
+            Assert.AreEqual(resultEvent.Success, false);
+        }
+
+        [TestMethod]
+        public void TestGuestListWhenExceptionAppearsReturnEventNotfound()
+        {
+            IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
+            resultEvent = eventHost.GetGuestList(10);
+            Assert.AreEqual(resultEvent.Message, "Event not found.");
+            Assert.AreEqual(resultEvent.Success, false);
+        }
+
+        [TestMethod]
+        public void TestGuestListWhenReturnSuccesfulData()
+        {
+            IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
+            resultEvent = eventHost.GetGuestList(1);
+            Assert.AreEqual(resultEvent.Message, "Successful Data.");
+            Assert.AreEqual(resultEvent.Success, true);
         }
         #endregion
     }
