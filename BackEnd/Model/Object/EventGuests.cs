@@ -6,6 +6,6 @@
     {
         public int EventId { get; set; }
 
-        public IEnumerable<EventGuest> Guests { get; set; }
+        public IEnumerable<GuestInformation> Guests { get; set; }
     }
 }

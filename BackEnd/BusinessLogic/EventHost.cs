@@ -178,7 +178,7 @@
                 return resultGuestList;
             }
 
-            List<EventGuest> userGuestList = new List<EventGuest>();
+            List<GuestInformation> userGuestList = new List<GuestInformation>();
             var guests = new GuestRepository();
             var guestList = guests.GetGuestsByEventId(eventId);
             var user = new UserRepository();
@@ -186,7 +186,7 @@
             foreach (var item in guestList)
             {
                 User userGuest = user.GetById(item.UserId);
-                EventGuest eventGuest = new EventGuest();
+                GuestInformation eventGuest = new GuestInformation();
                 eventGuest.Id = userGuest.Id;
                 eventGuest.Name = userGuest.Name;
                 eventGuest.AcountName = userGuest.AccountName;
