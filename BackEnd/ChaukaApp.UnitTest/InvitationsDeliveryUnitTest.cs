@@ -1,7 +1,7 @@
 ﻿namespace ChaukaApp.UnitTest
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using BusinessLogic;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Model.Object;
     using Model.Result;
 
@@ -12,7 +12,7 @@
         [TestMethod]
         public void TestGetInvitationsWhenUserIdIsNegativeReturnUserIdIsNotValid()
         {
-            IResult<Event> resultEvent = new ResultEntity<Event>();
+            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.UserRepository = new TestUserRepository();
             invitationsDelivery.EventRepository = new TestEventsRepository();
@@ -25,7 +25,7 @@
         [TestMethod]
         public void TestGetInvitationsWhenUserIdNotExistReturnUserNotfound()
         {
-            IResult<Event> resultEvent = new ResultEntity<Event>();
+            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.UserRepository = new TestUserRepository();
             invitationsDelivery.EventRepository = new TestEventsRepository();
@@ -38,7 +38,7 @@
         [TestMethod]
         public void TestGetInvitationsWhenUserIdIsValidReturnSuccesfulData()
         {
-            IResult<Event> resultEvent = new ResultEntity<Event>();
+            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.UserRepository = new TestUserRepository();
             invitationsDelivery.EventRepository = new TestEventsRepository();

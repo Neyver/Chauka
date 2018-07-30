@@ -63,7 +63,7 @@
 
         public IEnumerable<Guest> GetEventsByUserId(int userId)
         {
-            return guests.Where(guest => guest.UserId == userId && String.Equals(guest.Status, "PENDING"));
+            return this.guests.Where(guest => guest.UserId == userId && string.Equals(guest.Status, "PENDING"));
         }
     }
 }

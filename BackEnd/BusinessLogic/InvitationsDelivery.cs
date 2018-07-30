@@ -1,5 +1,6 @@
 ﻿namespace BusinessLogic
 {
+    using System.Collections.Generic;
     using DataAccess;
     using Model.Core;
     using Model.Object;
@@ -20,9 +21,10 @@
 
         public IEventsRepository<Event> EventRepository { get; set; }
 
-        public IResult<Event> GetInvitations(int userId)
+        public IResult<UserEvent> GetInvitations(int userId)
         {
-            IResult<Event> eventsResult = new ResultEntity<Event>();
+            IResult<UserEvent> eventsResult = new ResultEntity<UserEvent>();
+            UserEvent responseEvents = new UserEvent();
             if (userId <= 0)
             {
                 eventsResult.Message = "The user ID is not valid.";
@@ -36,8 +38,18 @@
                 eventsResult.Success = false;
                 return eventsResult;
             }
+
+            List<Event> events = new List<Event>();
+            var eventList = this.GuestRepository.GetGuestsByUserId(userId);
+
+            foreach (var item in eventList)
+            {
+                events.Add(this.EventRepository.GetById(item.EventId));
+            }
             ////DATA 
-            ////eventsResult.Data = this.GuestRepository.GetEventsByUserId(userId);
+            responseEvents.UserId = userId;
+            responseEvents.Events = events;
+            eventsResult.Data = responseEvents;
             eventsResult.Message = "Successful Data.";
             eventsResult.Success = true;
 

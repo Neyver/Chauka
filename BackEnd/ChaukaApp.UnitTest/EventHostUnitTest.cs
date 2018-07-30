@@ -310,7 +310,7 @@
             {
                 UserId = 1,
                 NameEvent = "Event test",
-                StartDatetime = new DateTime(DateTime.Now.Year -1, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                StartDatetime = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
                 Latitude = 0.252525,
                 Longitude = 0.252525
             });
@@ -417,11 +417,11 @@
             {
                 UserId = 1,
                 EventId = 5,
-                Status = null
+                Status = null   //// This value always is PENDING by default
             });
 
-            Assert.AreEqual(result.Success, false);
-            Assert.AreEqual(result.Message, "The register of the Guest can not be created.");
+            Assert.AreEqual(result.Success, true);
+            ////Assert.AreEqual(result.Message, "The register of the Guest can not be created.");
         }
         #endregion
 

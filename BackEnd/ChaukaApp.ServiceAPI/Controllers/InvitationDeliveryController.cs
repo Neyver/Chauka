@@ -1,22 +1,17 @@
-﻿
-namespace ChaukaApp.ServiceAPI.Controllers
+﻿namespace ChaukaApp.ServiceAPI.Controllers
 {
     using System;
-    using Model.Object;
-    using Model.Result;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Web.Http;
     using BusinessLogic;
+    using Model.Object;
+    using Model.Result;
 
     public class InvitationDeliveryController : ApiController
     {
-        public IResult<Event> GetInvitations(int userId)
+        public IResult<UserEvent> GetInvitations(int userId)
         {
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
-            IResult<Event> resultEvent = new ResultEntity<Event>();
+            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
             try
             {
                 resultEvent = invitationsDelivery.GetInvitations(userId);
