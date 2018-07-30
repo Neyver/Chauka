@@ -18,10 +18,16 @@ const saveMyPosition = () => {
   data.Id = Account['Id']
   data.Latitude = parseFloat(document.getElementsByTagName('input')[0].value)
   data.Longitude = parseFloat(document.getElementsByTagName('input')[1].value)
-  var json = JSON.stringify(data)
-  fetch(url, {
-    body: json,
-    headers: {'content-type': 'application/json'},
-    method: 'PATCH'
-  }).then(response => window.location.href = 'events.html')
+  if(Number.isNaN(data.Latitude))
+  {
+    alert('Mark your position')
+  }
+  else {
+    var json = JSON.stringify(data)
+    fetch(url, {
+      body: json,
+      headers: {'content-type': 'application/json'},
+      method: 'PATCH'
+    }).then(response => window.location.href = 'events.html')
+  }
 }

@@ -96,7 +96,9 @@
             {
                 UserId = 10,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "Interal Exception: No connection string named 'ChaukaContext' could be found in the application config file.");
@@ -112,7 +114,9 @@
             {
                 UserId = 10,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "Interal Exception: Object reference not set to an instance of an object.");
@@ -128,7 +132,9 @@
             {
                 UserId = 1,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "It is not possible to access the data service.");
@@ -155,7 +161,9 @@
             {
                 UserId = 0,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The User Id can not be empty.");
@@ -171,7 +179,9 @@
             {
                 UserId = -1,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The User Id can not be negative.");
@@ -187,7 +197,9 @@
             {
                 UserId = 10,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The User can not be found.");
@@ -203,7 +215,9 @@
             {
                 UserId = 1,
                 NameEvent = string.Empty,
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             });
             Assert.AreEqual(result.Success, false);
             Assert.AreEqual(result.Message, "The Event name must not be empty.");
@@ -219,7 +233,9 @@
             {
                 UserId = 1,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0)
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
             };
             ResultSimplified result = eventHost.RegisterEvent(newEvent);
             Assert.AreEqual(result.Success, true);
@@ -237,13 +253,175 @@
             {
                 UserId = 1,
                 NameEvent = "New Event",
-                StartDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
                 EndDatetime = new DateTime(2018, 05, 24, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525                
             };
 
             ResultSimplified result = eventHost.RegisterEvent(newEvent);
             Assert.AreEqual(result.Success, true);
             Assert.AreEqual(result.Message, "The Event was successfully registered.");
+        }
+
+        [TestMethod]
+        public void TestRegisterEventWhenLatitudeIsZeroReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            ResultSimplified result = eventHost.RegisterEvent(new Event()
+            {
+                UserId = 1,
+                NameEvent = "Event test",
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0,
+                Longitude = 0.252525
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "Location position required for the event.");
+        }
+
+        [TestMethod]
+        public void TestRegisterEventWhenLongitudeIsZeroReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            ResultSimplified result = eventHost.RegisterEvent(new Event()
+            {
+                UserId = 1,
+                NameEvent = "Event test",
+                StartDatetime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "Location position required for the event.");
+        }
+
+        [TestMethod]
+        public void TestRegisterEventWhenDateIsOldReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            ResultSimplified result = eventHost.RegisterEvent(new Event()
+            {
+                UserId = 1,
+                NameEvent = "Event test",
+                StartDatetime = new DateTime(DateTime.Now.Year -1, DateTime.Now.Month, DateTime.Now.Day, 14, 30, 0),
+                Latitude = 0.252525,
+                Longitude = 0.252525
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The start date must be greater than or equal to the creation date.");
+        }
+
+        #endregion
+
+        #region Test Invite Guest
+        [TestMethod]
+        public void TestInviteGuestWhenRepositortesAreNullReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = null;
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = 1,
+                Status = "PENDING"
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "It is not possible to access the data service.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenGuestIsNullReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(null);
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The Guest can not be null.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenUserIdIsNegativeReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = -1,
+                EventId = 1,
+                Status = "PENDING"
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The User is not valid.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWheneEventIdIsNegativeReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = -1,
+                Status = "PENDING"
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The Event is not valid.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenGuestIsValidReturnIResultWithSuccessTrue()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 4,
+                EventId = 1,
+                Status = "PENDING"
+            });
+
+            Assert.AreEqual(result.Success, true);
+            Assert.AreEqual(result.Message, "Invitation sent.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenExistInvitationReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = 1,
+                Status = "PENDING"
+            });
+
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The invitation really exist.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenFailRegisterReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.GuestRepository = new TestGuestRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = 5,
+                Status = null
+            });
+
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The register of the Guest can not be created.");
         }
         #endregion
 

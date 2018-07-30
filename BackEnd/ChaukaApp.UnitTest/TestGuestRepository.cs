@@ -1,15 +1,15 @@
 ﻿namespace ChaukaApp.UnitTest
 {
-    using Model.Core;
-    using Model.Object;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Model.Core;
+    using Model.Object;
 
     public class TestGuestRepository : IGuestRepository<Guest>
     {
+        private IEnumerable<Guest> guests;
+
         public TestGuestRepository()
         {
             List<Guest> guestsList = new List<Guest>();
@@ -17,14 +17,17 @@
             guestsList.Add(new Guest { Id = 2, UserId = 2, EventId = 1 });
             guestsList.Add(new Guest { Id = 3, UserId = 1, EventId = 2 });
             guestsList.Add(new Guest { Id = 4, UserId = 3, EventId = 3 });
-            guestsList.Add(new Guest { Id = 5, UserId = 3, EventId = 3 });
+            guestsList.Add(new Guest { Id = 5, UserId = 1, EventId = 3 });
             this.guests = guestsList.AsEnumerable();
         }
 
-        private IEnumerable<Guest> guests;
-
         public bool Create(Guest entity)
         {
+            if (entity.Status == null || entity.EventId == 0 || entity.UserId == 0)
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -35,12 +38,27 @@
 
         public IQueryable<Guest> GetAll()
         {
-            return guests.AsQueryable();
+            return this.guests.AsQueryable();
         }
 
         public IEnumerable<Guest> GetGuestsByEventId(int eventId)
         {
-            return guests.Where(guest => guest.EventId == eventId && String.Equals(guest.Status, "PENDING"));
+            return this.guests.Where(guest => guest.EventId == eventId && string.Equals(guest.Status, "PENDING"));
+        }
+
+        public bool Exist(Guest entity)
+        {
+            return this.guests.Any(elem => elem.UserId == entity.UserId && elem.EventId == entity.EventId);
+        }
+
+        public IEnumerable<Guest> GetGuestsByUserId(int userId)
+        {
+            return this.guests.Where(guest => guest.UserId == userId && string.Equals(guest.Status, "PENDING"));
+        }
+
+        public bool UpdateStatusGuest(Guest entity)
+        {
+            return true;
         }
 
         public IEnumerable<Guest> GetEventsByUserId(int userId)
@@ -49,12 +67,3 @@
         }
     }
 }
-
-/*
- Id	UserId	EventId
-1	1	1
-2	2	1
-3	1	2
-4	3	2
-5	3	3
- */
