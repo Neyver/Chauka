@@ -17,11 +17,11 @@ const saveEvent = () => {
   data.Longitude = parseFloat(document.getElementById('longitude').value);
   
   if (data.NameEvent === '' || startDate === '' || startTime === '') {
-    alert('complete the required data');
+    alert('Complete the required data');
   }
   else if(Number.isNaN(data.Latitude))
   {
-    alert('mark event position')
+    alert('Mark event position')
   }
   else {
     var json = JSON.stringify(data);

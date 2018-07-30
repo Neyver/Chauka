@@ -20,7 +20,7 @@ const saveMyPosition = () => {
   data.Longitude = parseFloat(document.getElementsByTagName('input')[1].value)
   if(Number.isNaN(data.Latitude))
   {
-    alert('mark your position')
+    alert('Mark your position')
   }
   else {
     var json = JSON.stringify(data)
