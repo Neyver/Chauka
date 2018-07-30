@@ -43,7 +43,6 @@ function fillTableEvents(events) {
       contentTable += '<tr>\
         <td>' + event['NameEvent'] + '</td>\
         <td>' + event['StartDatetime'] + '</td>\
-        <td>' + event['EndDatetime'] + '</td>\
         <td> <a href="info-event.html?eventId=' + event['Id'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
       </tr>'
     });

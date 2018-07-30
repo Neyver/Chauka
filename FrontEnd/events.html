@@ -29,25 +29,77 @@
     </div>
     <div class="body-events">
       <div class="events-list">
-        <div class="row title">
-          <div class="col-10">
-            <span>Events List</span>
+        <div class="events-accepted">
+          <div class="row title">
+            <div class="col-10">
+              <span>Events List</span>
+            </div>
+          </div>
+          <div class="events-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Events Name</th>
+                  <th>Start DateTime</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody id="table-events-user">
+
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="events-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Events Name</th>
-                <th>Start DateTime</th>
-                <th>End DateTime</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody id="table-events-user">
-
-            </tbody>
-          </table>
+        <div class="invitations">
+          <div class="row title">
+            <div class="col-10">
+              <span>Invitations List</span>
+            </div>
+          </div>
+          <div class="invitations-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Events Name</th>
+                  <th>Start DateTime</th>
+                  <th>Details</th>
+                  <th>Accept</th>
+                </tr>
+              </thead>
+              <tbody id="table-invitations-user">
+                <tr>
+                  <td>Cosplay</td>
+                  <td>Fecha</td>
+                  <td>
+                    <i class="material-icons">insert_drive_file</i>
+                  </td>
+                  <td>
+                    <div class="action">
+                      <i class="material-icons">event_available</i>
+                    </div>
+                    <div class="action">
+                      <i class="material-icons">event_busy</i>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>ccc</td>
+                  <td>Fecha</td>
+                  <td>
+                    <i class="material-icons">insert_drive_file</i>
+                  </td>
+                  <td>
+                    <div class="action" id="invitation-">
+                      <i class="material-icons">event_available</i>
+                    </div>
+                    <div class="action">
+                      <i class="material-icons">event_busy</i>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="row events-button">
           <div class="col-10">
