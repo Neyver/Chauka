@@ -15,28 +15,38 @@ const saveEvent = () => {
   data.UserId = userId;
   data.Latitude = parseFloat(document.getElementById('latitude').value);
   data.Longitude = parseFloat(document.getElementById('longitude').value);
+  
+  if (data.NameEvent === '' || startDate === '' || startTime === '') {
+    alert('complete the required data');
+  }
+  else if(Number.isNaN(data.Latitude))
+  {
+    alert('mark event position')
+  }
+  else {
+    var json = JSON.stringify(data);
+    console.log(json);
+    fetch(url, {
+      body: json,
+      headers: {'content-type': 'application/json'},
+      method: 'POST'
+    }).then(data => data.json())
+    .then(response => {
+        console.log(response);
+        if(response['Success'] === true) {
+          console.log(response['Message']);
+          window.location.href = 'events.html';
+        } else {
+          console.log(response['Message']);
+          alert(response['Message']);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        alert("Error: "+error);
+      })
+  }
 
-  var json = JSON.stringify(data);
-  console.log(json);
-  fetch(url, {
-    body: json,
-    headers: {'content-type': 'application/json'},
-    method: 'POST'
-  }).then(data => data.json())
-  .then(response => {
-      console.log(response);
-      if(response['Success'] === true) {
-        console.log(response['Message']);
-        window.location.href = 'events.html';
-      } else {
-        console.log(response['Message']);
-        alert(response['Message']);
-      }
-    })
-    .catch(error => {
-      console.log(error);
-      alert("Error: "+error);
-    })
 }
 
 const cancelEventCreation = () => {
