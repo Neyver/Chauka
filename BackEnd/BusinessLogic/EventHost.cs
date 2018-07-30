@@ -95,12 +95,27 @@
         {
             ResultSimplified result = new ResultSimplified();
             result.Success = false;
+            
             try
             {
                 if (this.Repository != null || this.EventRepository != null)
                 {
                     if (newEvent != null)
                     {
+                        if (newEvent.Latitude == 0 || newEvent.Longitude == 0)
+                        {
+                            result.Success = false;
+                            result.Message = "Location position required for the event.";
+                            return result;
+                        }
+
+                        if (newEvent.StartDatetime.Date < DateTime.Now.Date)
+                        {
+                            result.Success = false;
+                            result.Message = "The start date must be greater than or equal to the creation date.";
+                            return result;
+                        }
+
                         if (newEvent.UserId > 0)
                         {
                             var user = this.Repository.GetById(newEvent.UserId);
