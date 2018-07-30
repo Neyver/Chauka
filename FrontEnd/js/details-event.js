@@ -51,8 +51,8 @@ function fillEvents(data) {
         nameEvent.innerHTML = data.NameEvent;
         let startDate = document.getElementById('start-date');
         startDate.innerHTML = data.StartDatetime;
-        let endDate = document.getElementById('end-date');
-        endDate.innerHTML = data.EndDatetime;
+        /*let endDate = document.getElementById('end-date');
+        endDate.innerHTML = data.EndDatetime;*/
         getMap(data);
     }
 }

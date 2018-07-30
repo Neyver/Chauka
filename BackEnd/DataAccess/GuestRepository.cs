@@ -43,7 +43,7 @@
         public IEnumerable<Guest> GetGuestsByEventId(int eventId)
         {
             var guests = this.context.Set<Guest>();
-            return guests.Where(guest => guest.EventId == eventId && guest.Confirmation == true);
+            return guests.Where(guest => guest.EventId == eventId && String.Equals(guest.Status, "PENDING"));
         }
     }
 }

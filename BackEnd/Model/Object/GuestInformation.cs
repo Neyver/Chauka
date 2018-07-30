@@ -1,6 +1,6 @@
 ﻿namespace Model.Object
 {
-    public class EventGuest
+    public class GuestInformation
     {
         public int Id { get; set; }
 
