@@ -247,5 +247,83 @@
             Assert.AreEqual(result.Message, "The Event was successfully registered.");
         }
         #endregion
+
+        #region Test Invite Guest
+        [TestMethod]
+        public void TestInviteGuestWhenRepositortesAreNullReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = null;
+            eventHost.EventRepository = null;
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = 1,
+                Status = "PENDING"
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "It is not possible to access the data service.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenGuestIsNullReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            ResultSimplified result = eventHost.InviteGuest(null);
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The Guest can not be null.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenUserIdIsNegativeReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = -1,
+                EventId = 1,
+                Status = "PENDING"
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The User is not valid.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWheneEventIdIsNegativeReturnIResultWithSuccessFalse()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = -1,
+                Status = "PENDING"
+            });
+            Assert.AreEqual(result.Success, false);
+            Assert.AreEqual(result.Message, "The Event is not valid.");
+        }
+
+        [TestMethod]
+        public void TestInviteGuestWhenGuestIsValidReturnIResultWithSuccessTrue()
+        {
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            ResultSimplified result = eventHost.InviteGuest(new Guest()
+            {
+                UserId = 1,
+                EventId = 1,
+                Status = "PENDING"
+            });
+
+            Assert.AreEqual(result.Success, true);
+            Assert.AreEqual(result.Message, "Invitation sent.");
+        }
+        #endregion
     }
 }

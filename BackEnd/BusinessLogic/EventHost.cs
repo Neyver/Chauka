@@ -219,10 +219,21 @@
                         {
                             if (newGuest.EventId > 0)
                             {
-                                if (guests.Create(newGuest))
+                                if (!guests.Equals(newGuest))
                                 {
-                                    result.Success = true;
-                                    result.Message = "Invitation sent.";
+                                    if (guests.Create(newGuest))
+                                    {
+                                        result.Success = true;
+                                        result.Message = "Invitation sent.";
+                                    }
+                                    else
+                                    {
+                                        result.Message = "The register of the Guest can not be created.";
+                                    }
+                                }
+                                else
+                                {
+                                    result.Message = "The invitation really exist.";
                                 }
                             }
                             else
@@ -237,7 +248,7 @@
                     }
                     else
                     {
-                        result.Message = "The register of the Guest can not be created.";
+                        result.Message = "The Guest can not be null.";
                     }
                 }
                 else
