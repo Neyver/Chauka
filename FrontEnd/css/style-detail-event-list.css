@@ -55,17 +55,6 @@
     color: #018786;
 }
 
-    /*.events-list button {
-        border: none;
-        background: transparent;
-        font-size: 14px;
-        float: right;
-        border: 1px solid #018786;
-        cursor: pointer;
-    }
-
-*/
-
 .events-list button {
     background-color: #80CBC4;
     border: none;
@@ -85,4 +74,5 @@
 
 h3 {
   text-align: center;
+  margin: 5px;
 }
