@@ -42,16 +42,15 @@ const validateGuest = () => {
 		.then(response => {
 		  console.log(response);
 		  if(response['Success'] === true) {
-			console.log(response['Message']);
+			alert(response['Message']);
 			window.location.href = 'info-event.html?eventId='+ getElement('eventId');
 		  } else {
 			console.log(response['Message']);
-			alert(response['Message']);
+			alert("ERROR: \n"+response['Message']);
 		  }
 		})
 	.catch(error => {
 		console.log(error);
-		alert("Error: "+error);
     });
 }
 
@@ -63,5 +62,5 @@ function getElement(name){
 }
 
 const cancelAddGuest = () => {
-  window.location.href = 'info-event.html'
+  window.location.href = 'info-event.html?eventId='+ getElement('eventId');
 }
