@@ -1,7 +1,6 @@
 ﻿namespace ChaukaApp.UnitTest
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using BusinessLogic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -245,6 +244,47 @@
             ResultSimplified result = eventHost.RegisterEvent(newEvent);
             Assert.AreEqual(result.Success, true);
             Assert.AreEqual(result.Message, "The Event was successfully registered.");
+        }
+        #endregion
+
+        #region Test Get Guest List
+        [TestMethod]
+        public void TestGetGuestListWhenExceptionAppearsReturnEventIdIsNotValid()
+        {
+            IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
+            resultEvent = eventHost.GetGuestList(-1);
+            Assert.AreEqual(resultEvent.Message, "Event ID is not valid.");
+            Assert.AreEqual(resultEvent.Success, false);
+        }
+
+        [TestMethod]
+        public void TestGuestListWhenExceptionAppearsReturnEventNotfound()
+        {
+            IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
+            resultEvent = eventHost.GetGuestList(10);
+            Assert.AreEqual(resultEvent.Message, "Event not found.");
+            Assert.AreEqual(resultEvent.Success, false);
+        }
+
+        [TestMethod]
+        public void TestGuestListWhenReturnSuccesfulData()
+        {
+            IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
+            IEventHost eventHost = new EventHost();
+            eventHost.Repository = new TestUserRepository();
+            eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
+            resultEvent = eventHost.GetGuestList(1);
+            Assert.AreEqual(resultEvent.Message, "Successful Data.");
+            Assert.AreEqual(resultEvent.Success, true);
         }
         #endregion
     }

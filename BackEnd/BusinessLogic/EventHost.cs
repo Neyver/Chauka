@@ -21,6 +21,8 @@
 
         public IEventsRepository<Event> EventRepository { get; set; } = new EventsRepository();
 
+        public IGuestRepository<Guest> GuestRepository { get; set; } = new GuestRepository();
+
         public IResult<Event> GetEvent(int eventId)
         {
             IResult<Event> eventsResult = new ResultEntity<Event>();
@@ -179,13 +181,11 @@
             }
 
             List<GuestInformation> userGuestList = new List<GuestInformation>();
-            var guests = new GuestRepository();
-            var guestList = guests.GetGuestsByEventId(eventId);
-            var user = new UserRepository();
+            var guestList = GuestRepository.GetGuestsByEventId(eventId);
 
             foreach (var item in guestList)
             {
-                User userGuest = user.GetById(item.UserId);
+                User userGuest = Repository.GetById(item.UserId);
                 GuestInformation eventGuest = new GuestInformation();
                 eventGuest.Id = userGuest.Id;
                 eventGuest.Name = userGuest.Name;
