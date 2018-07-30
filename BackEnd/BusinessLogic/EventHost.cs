@@ -181,11 +181,11 @@
             }
 
             List<GuestInformation> userGuestList = new List<GuestInformation>();
-            var guestList = GuestRepository.GetGuestsByEventId(eventId);
+            var guestList = this.GuestRepository.GetGuestsByEventId(eventId);
 
             foreach (var item in guestList)
             {
-                User userGuest = Repository.GetById(item.UserId);
+                User userGuest = this.Repository.GetById(item.UserId);
                 GuestInformation eventGuest = new GuestInformation();
                 eventGuest.Id = userGuest.Id;
                 eventGuest.Name = userGuest.Name;
@@ -206,12 +206,11 @@
         public ResultSimplified InviteGuest(Guest newGuest)
         {
             ResultSimplified result = new ResultSimplified();
-            var guests = new GuestRepository();
 
             result.Success = false;
             try
             {
-                if (this.Repository != null || this.EventRepository != null)
+                if (this.GuestRepository != null)
                 {
                     if (newGuest != null)
                     {
@@ -219,10 +218,22 @@
                         {
                             if (newGuest.EventId > 0)
                             {
-                                if (guests.Create(newGuest))
+                                if (!this.GuestRepository.Exist(newGuest))
                                 {
-                                    result.Success = true;
-                                    result.Message = "Invitation sent.";
+                                    newGuest.Status = "PENDING";
+                                    if (this.GuestRepository.Create(newGuest))
+                                    {
+                                        result.Success = true;
+                                        result.Message = "Invitation sent.";
+                                    }
+                                    else
+                                    {
+                                        result.Message = "The register of the Guest can not be created.";
+                                    }
+                                }
+                                else
+                                {
+                                    result.Message = "The invitation really exist.";
                                 }
                             }
                             else
@@ -237,12 +248,11 @@
                     }
                     else
                     {
-                        result.Message = "The register of the Guest can not be created.";
+                        result.Message = "The Guest can not be null.";
                     }
                 }
                 else
                 {
-                    result.Success = false;
                     result.Message = "It is not possible to access the data service.";
                 }
             }
