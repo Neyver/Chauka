@@ -50,5 +50,15 @@
         {
             return this.guests.Any(elem => elem.UserId == entity.UserId && elem.EventId == entity.EventId);
         }
+
+        public IEnumerable<Guest> GetGuestsByUserId(int userId)
+        {
+            return this.guests.Where(guest => guest.UserId == userId && string.Equals(guest.Status, "PENDING"));
+        }
+
+        public bool UpdateStatusGuest(Guest entity)
+        {
+            return true;
+        }
     }
 }
