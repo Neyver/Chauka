@@ -20,10 +20,9 @@
 
         public IEventsRepository<Event> EventRepository { get; set; }
 
-        public IResult<UserEvent> GetInvitations(int userId)
+        public IResult<Event> GetInvitations(int userId)
         {
-            IResult<UserEvent> eventsResult = new ResultEntity<UserEvent>();
-            UserEvent userResponse = new UserEvent();
+            IResult<Event> eventsResult = new ResultEntity<Event>();
             if (userId <= 0)
             {
                 eventsResult.Message = "The user ID is not valid.";
@@ -38,9 +37,7 @@
                 return eventsResult;
             }
             ////DATA 
-            ////userResponse.Events = this.GuestRepository.GetEventsByUserId(userId);
-            userResponse.UserId = userId;
-            eventsResult.Data = userResponse;
+            ////eventsResult.Data = this.GuestRepository.GetEventsByUserId(userId);
             eventsResult.Message = "Successful Data.";
             eventsResult.Success = true;
 

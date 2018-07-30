@@ -10,6 +10,6 @@
 
         IGuestRepository<Guest> GuestRepository { get; set; }
 
-        IResult<UserEvent> GetInvitations(int userId);
+        IResult<Event> GetInvitations(int userId);
     }
 }
