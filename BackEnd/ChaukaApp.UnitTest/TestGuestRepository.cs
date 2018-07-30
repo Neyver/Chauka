@@ -42,6 +42,11 @@
         {
             return guests.Where(guest => guest.EventId == eventId && String.Equals(guest.Status, "PENDING"));
         }
+
+        public IEnumerable<Guest> GetEventsByUserId(int userId)
+        {
+            return guests.Where(guest => guest.UserId == userId && String.Equals(guest.Status, "PENDING"));
+        }
     }
 }
 

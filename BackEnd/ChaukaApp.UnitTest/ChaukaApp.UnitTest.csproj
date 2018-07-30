@@ -51,6 +51,7 @@
     <Compile Include="TestEventsRepository.cs" />
     <Compile Include="TestGuestRepository.cs" />
     <Compile Include="TestUserRepository.cs" />
+    <Compile Include="InvitationsDeliveryUnitTest.cs" />
     <Compile Include="UserAuthenticatorUnitTest.cs" />
     <Compile Include="EventHostUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
