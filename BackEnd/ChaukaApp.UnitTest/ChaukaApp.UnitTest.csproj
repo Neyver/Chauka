@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestEventsRepository.cs" />
+    <Compile Include="TestGuestRepository.cs" />
     <Compile Include="TestUserRepository.cs" />
     <Compile Include="UserAuthenticatorUnitTest.cs" />
     <Compile Include="EventHostUnitTest.cs" />
