@@ -23,11 +23,11 @@ function getEvents() {
       if(data['Success'] === true) {
         fillTableEvents(data['Data']['Events']);
       } else {
-        alert(data['Message']);
+        message = data['Message']
       }
     })
     .catch(error => {
-      alert(error);
+      message = error
     })
 }
 
@@ -55,11 +55,11 @@ function getInvitations() {
       if(data['Success'] === true) {
         fillTableInvitations(data['Data']['Events']);
       } else {
-        alert(data['Message']);
+        message = data['Message']
       }
     })
     .catch(error => {
-      alert(error);
+      message = error
     })
 }
 
@@ -113,7 +113,7 @@ function sendStatusInvitation (guestId, eventId, status) {
     if(status === "ACCEPTED") {
       getEvents();
     }
-    alert(response['Message'])
+    message = response['Message']
   })
-  .catch((error) => alert(error));
+  .catch(error => message = error);
 }

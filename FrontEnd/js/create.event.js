@@ -14,11 +14,13 @@ const saveEvent = () => {
   data.Longitude = parseFloat(document.getElementById('longitude').value);
 
   if (data.NameEvent === '' || startDate === '' || startTime === '') {
-    alert('Complete the required data');
+    // alert('Complete the required data');
+    message = 'Complete the required data'
   }
   else if(Number.isNaN(data.Latitude))
   {
-    alert('Mark event position')
+    // alert('Mark event position')
+    message = 'Mark event position'
   }
   else {
     var json = JSON.stringify(data);
@@ -31,11 +33,13 @@ const saveEvent = () => {
         if(response['Success'] === true) {
           window.location.href = 'events.html';
         } else {
-          alert(response['Message']);
+          // alert(response['Message']);
+          message = response['Message']
         }
       })
       .catch(error => {
-        alert("Error: "+error);
+        // alert("Error: "+error);
+        message = "Error: "+error
       })
   }
 }
