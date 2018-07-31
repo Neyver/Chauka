@@ -1,5 +1,6 @@
 ﻿namespace BusinessLogic
 {
+    using System;
     using System.Collections.Generic;
     using DataAccess;
     using Model.Core;
@@ -20,6 +21,31 @@
         public IUserRepository<User> UserRepository { get; set; }
 
         public IEventsRepository<Event> EventRepository { get; set; }
+
+        public ResultSimplified ChangeInvitationReponse(Guest guest)
+        {
+            ResultSimplified result = new ResultSimplified();
+            result.Success = false;
+            if (guest.Id <= 0)
+            {
+                result.Message = "The guest ID is not valid.";
+                return result;
+            }
+
+            if (string.Equals(guest.Status, string.Empty))
+            {
+                result.Message = "The response is not valid.";
+                return result;
+            }
+
+            if (this.GuestRepository.UpdateStatusGuest(guest))
+            {
+                result.Success = true;
+                result.Message = "Response updated.";
+            }
+
+            return result;
+        }
 
         public IResult<UserEvent> GetInvitations(int userId)
         {
