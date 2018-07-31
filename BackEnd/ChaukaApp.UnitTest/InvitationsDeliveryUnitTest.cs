@@ -48,5 +48,49 @@
             Assert.AreEqual(resultEvent.Success, true);
         }
         #endregion
+
+        #region Change Invitation Reponse
+        [TestMethod]
+        public void TestChangeInvitationReponseWhenGuestIdIsNegativeReturnGuestIdIsNotValid()
+        {
+            ResultSimplified result = new ResultSimplified();
+            IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
+            invitationsDelivery.GuestRepository = new TestGuestRepository();
+
+            var guest = new Guest() { Id=-1, UserId=1, EventId=1, Status= "ACCEPTED" };
+            result = invitationsDelivery.ChangeInvitationReponse(guest);
+
+            Assert.AreEqual(result.Message, "The guest ID is not valid.");
+            Assert.AreEqual(result.Success, false);
+        }
+
+        [TestMethod]
+        public void TestChangeInvitationReponseWhenGuestStatusNotVaildReturnResponseNotValid()
+        {
+            ResultSimplified result = new ResultSimplified();
+            IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
+            invitationsDelivery.GuestRepository = new TestGuestRepository();
+
+            var guest = new Guest() { Id = 1, UserId = 1, EventId = 1, Status = "" };
+            result = invitationsDelivery.ChangeInvitationReponse(guest);
+
+            Assert.AreEqual(result.Message, "The response is not valid.");
+            Assert.AreEqual(result.Success, false);
+        }
+
+        [TestMethod]
+        public void TestChangeInvitationReponseWhenChangeIsValidReturnResponseUpdated()
+        {
+            ResultSimplified result = new ResultSimplified();
+            IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
+            invitationsDelivery.GuestRepository = new TestGuestRepository();
+
+            var guest = new Guest() { Id = 1, UserId = 1, EventId = 1, Status = "ACCEPTED" };
+            result = invitationsDelivery.ChangeInvitationReponse(guest);
+
+            Assert.AreEqual(result.Message, "Response updated.");
+            Assert.AreEqual(result.Success, true);
+        }
+        #endregion
     }
 }
