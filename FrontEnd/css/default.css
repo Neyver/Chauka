@@ -1,6 +1,7 @@
 @import 'https://fonts.googleapis.com/css?family=Titillium+Web:400,70';
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import './header.css';
+@import './alert-box.css';
 @import './login.css';
 @import './map.css';
 @import './style-event-list.css';

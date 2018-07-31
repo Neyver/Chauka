@@ -32,11 +32,11 @@ function getEventById() {
                 }
                 fillEvents(data['Data']);
             } else {
-                alert(data['Message']);
+              message = data['Message']
             }
         })
         .catch(error => {
-            alert(error);
+            message = error
         })
 }
 
@@ -53,8 +53,6 @@ function fillEvents(data) {
         nameEvent.innerHTML = data.NameEvent;
         let startDate = document.getElementById('start-date');
         startDate.innerHTML = data.StartDatetime;
-        /*let endDate = document.getElementById('end-date');
-        endDate.innerHTML = data.EndDatetime;*/
         getMap(data);
     }
 }
@@ -77,11 +75,11 @@ function getUsers() {
             if (data['Success'] === true) {
                 fillTableEvents(data['Data']['Guests']);
             } else {
-                alert(data['Message']);
+              message = data['Message']
             }
         })
         .catch(error => {
-            alert(error);
+          message = error
         })
 }
 

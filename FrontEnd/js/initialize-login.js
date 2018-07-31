@@ -7,7 +7,7 @@ setFormLogin = () => {
 function validateLogin() {
   var username = document.getElementById("userId").value
   if (username === '' ) {
-    alert('The account name must not be empty');
+    message = 'The account name must not be empty'
   }
   else {
     var xhttp = new XMLHttpRequest();
@@ -20,7 +20,7 @@ function validateLogin() {
                 location.href = "events.html";
             }
             else {
-                alert("ERROR: \n"+obj.Message);
+                message = obj.Message
             }
 
         }
@@ -28,15 +28,15 @@ function validateLogin() {
             if (this.readyState == 4 && this.status != 200) {
                 if (this.readyState == 4 && this.status == 400) {
                     let obj = JSON.parse(this.responseText);
-                    alert(obj.Message);
+                    message = obj.Message
                 }
                 else {
-                    alert("Unexpected error!\n could not be processed.");
+                    message = 'Unexpected error!\n could not be processed.'
                 }
             }
         }
     };
-    xhttp.open("GET", "http://localhost:5387/api/Accounts?accountName=" + username+"", true);
+    xhttp.open('GET', 'http://localhost:5387/api/Accounts?accountName=' + username + '', true);
     xhttp.send();
   }
 }
