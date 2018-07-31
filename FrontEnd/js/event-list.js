@@ -2,8 +2,9 @@ const Account = localStorage.getItem('Account');
 console.log(Account);
 
 function fillPage() {
-    fillHeader();
+  fillHeader();
   getEvents();
+  getInvitations();
 }
 
 function fillHeader() {
@@ -48,4 +49,69 @@ function fillTableEvents(events) {
     });
     tableEvents.innerHTML = contentTable;
   }
+}
+
+function getInvitations() {
+  const account = JSON.parse(Account);
+  const userId = account['Id'];
+  fetch('http://localhost:5387/api/Invitations?userId=' + userId)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      if(data['Success'] === true) {
+        console.log(data['Message']);
+        fillTableEvents(data['Data']['Events']);
+      } else {
+        console.log(data['Message']);
+        alert(data['Message']);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      alert(error);
+    })
+}
+
+function fillTableInvitations(invitations) {
+  if(invitations !== null) {
+    let tableInvitations = document.getElementById('table-invitations-user');
+    let contentTable = "";
+    invitations.forEach((invitation) => {
+      contentTable += '<tr>\
+        <td>' + invitation['NameEvent'] + '</td>\
+        <td>' + invitation['StartDatetime'] + '</td>\
+        <td> <a href="info-event.html?eventId=' + invitations['EventId'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
+        <td>\
+          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', "ACCEPTED")">\
+            <i class="material-icons">event_available</i>\
+          </div>\
+          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', "REJECTED")">\
+            <i class="material-icons">event_busy</i>\
+          </div>\
+        </td>\
+      </tr>'
+    });
+    tableInvitations.innerHTML = contentTable;
+  }
+}
+
+function sendStatusInvitation (guestId, eventId, status) {
+  const account = JSON.parse(Account);
+  const userId = account['Id'];
+  const data = {
+    Id: guestId,
+    UserId: userId,
+    EventId: eventId,
+    Status: status
+  }
+  fetch('http://localhost:5387/api/Invitations', {
+    body: JSON.stringify(data),
+    headers: {
+      'content-type': 'application/json'
+    },
+    method: 'POST',
+  })
+  .then(data => data.json())
+  .then((response) => alert(response['Message']))
+  .catch((error) => alert(error));
 }

@@ -89,7 +89,7 @@ a {
 }
 
 .body-events .events-list .events-accepted .title {
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   height: 20%;
 }
@@ -134,7 +134,7 @@ a {
 }
 
 .body-events .events-list .invitations .title {
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   height: 20%;
 }
@@ -195,7 +195,7 @@ a {
   float: right;
   border: 1px solid #018786;
   cursor: pointer;
-  height: 45px;
+  height: 35px;
 }
 
 .body-events .events-list button a {
