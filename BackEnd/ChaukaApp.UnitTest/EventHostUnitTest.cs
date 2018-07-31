@@ -39,6 +39,7 @@
             IEventHost eventHost = new EventHost();
             eventHost.Repository = new TestUserRepository();
             eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
             IResult<UserEvent> result = eventHost.GetUserEvents(1);
             Assert.AreEqual(true, result.Success);
             Assert.IsTrue(result.Data.Events.Count() > 0);
@@ -50,6 +51,7 @@
             IEventHost eventHost = new EventHost();
             eventHost.Repository = new TestUserRepository();
             eventHost.EventRepository = new TestEventsRepository();
+            eventHost.GuestRepository = new TestGuestRepository();
             IResult<UserEvent> result = eventHost.GetUserEvents(3);
             Assert.AreEqual(true, result.Success);
             Assert.IsTrue(result.Data.Events.Count() == 0);

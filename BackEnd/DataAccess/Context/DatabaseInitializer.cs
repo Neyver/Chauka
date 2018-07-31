@@ -29,9 +29,23 @@
                 AccountName = "juancito"
             };
 
+            var user3 = new User()
+            {
+                Name = "Simon Bolivar",
+                AccountName = "simon"
+            };
+
+            var user4 = new User()
+            {
+                Name = "Antonio Sucre",
+                AccountName = "antonio"
+            };
+
             context.Users.Add(user);
             context.Users.Add(user1);
             context.Users.Add(user2);
+            context.Users.Add(user3);
+            context.Users.Add(user4);
 
             var event1 = new Event()
             {
@@ -89,9 +103,9 @@
             context.Events.Add(event4);
             context.Events.Add(event5);
 
-            context.Guests.Add(new Guest() { EventId = 1, UserId = 1, Status = "ACCEPTED" });
+            context.Guests.Add(new Guest() { EventId = 1, UserId = 3, Status = "ACCEPTED" });
             context.Guests.Add(new Guest() { EventId = 1, UserId = 2, Status = "ACCEPTED" });
-            context.Guests.Add(new Guest() { EventId = 2, UserId = 1, Status = "ACCEPTED" });
+            context.Guests.Add(new Guest() { EventId = 2, UserId = 4, Status = "ACCEPTED" });
             context.Guests.Add(new Guest() { EventId = 2, UserId = 3, Status = "ACCEPTED" });
             context.Guests.Add(new Guest() { EventId = 3, UserId = 3, Status = "PENDING" });
 

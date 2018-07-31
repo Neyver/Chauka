@@ -57,7 +57,7 @@
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.GuestRepository = new TestGuestRepository();
 
-            var guest = new Guest() { Id=-1, UserId=1, EventId=1, Status= "ACCEPTED" };
+            var guest = new Guest() { Id = -1, UserId = 1, EventId = 1, Status = "ACCEPTED" };
             result = invitationsDelivery.ChangeInvitationReponse(guest);
 
             Assert.AreEqual(result.Message, "The guest ID is not valid.");
@@ -71,7 +71,7 @@
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.GuestRepository = new TestGuestRepository();
 
-            var guest = new Guest() { Id = 1, UserId = 1, EventId = 1, Status = "" };
+            var guest = new Guest() { Id = 1, UserId = 1, EventId = 1, Status = string.Empty };
             result = invitationsDelivery.ChangeInvitationReponse(guest);
 
             Assert.AreEqual(result.Message, "The response is not valid.");
