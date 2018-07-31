@@ -4,7 +4,6 @@ var eventId;
 function fillPage() {
     fillHeader();
     eventId = getElement("eventId");
-    console.log(eventId);
     getEventById();
     getUsers();
 }
@@ -24,6 +23,15 @@ function getEventById() {
             console.log(data);
             if (data['Success'] === true) {
                 console.log(data['Message']);
+                const account = JSON.parse(Account);
+                const userId = account['Id'];
+                let button = document.getElementById('btn-add');
+                if(userId === data.Data.UserId) {
+                  button.style.visibility = 'visible';
+                }
+                else {
+                  button.style.visibility = 'hidden';
+                }
                 fillEvents(data['Data']);
             } else {
                 console.log(data['Message']);
@@ -35,8 +43,6 @@ function getEventById() {
             alert(error);
         })
 }
-
-
 
 function getElement(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -64,11 +70,9 @@ function getMap(data) {
 
 }
 
-
 function cancelPosition() {
     window.location.href = 'events.html'
 }
-
 
 function getUsers() {
     console.log(eventId);
@@ -101,6 +105,7 @@ function fillTableEvents(events) {
         tableEvents.innerHTML = contentTable;
     }
 }
+
 function AddGuest() {
     window.location.href = 'add-guest.html?eventId=' + eventId;
 }

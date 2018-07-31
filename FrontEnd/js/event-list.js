@@ -1,5 +1,4 @@
 const Account = localStorage.getItem('Account');
-console.log(Account);
 
 function fillPage() {
   fillHeader();
@@ -21,17 +20,13 @@ function getEvents() {
   fetch('http://localhost:5387/api/Events?userId=' + userId)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       if(data['Success'] === true) {
-        console.log(data['Message']);
         fillTableEvents(data['Data']['Events']);
       } else {
-        console.log(data['Message']);
         alert(data['Message']);
       }
     })
     .catch(error => {
-      console.log(error);
       alert(error);
     })
 }
@@ -41,7 +36,6 @@ function fillTableEvents(events) {
     let tableEvents = document.getElementById('table-events-user');
     let contentTable = "";
     events.forEach((event) => {
-      console.log(event['NameEvent']);
       contentTable += '<tr>\
         <td>' + event['NameEvent'] + '</td>\
         <td>' + event['StartDatetime'] + '</td>\
@@ -58,17 +52,13 @@ function getInvitations() {
   fetch('http://localhost:5387/api/Invitations?userId=' + userId)
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       if(data['Success'] === true) {
-        console.log(data['Message']);
         fillTableInvitations(data['Data']['Events']);
       } else {
-        console.log(data['Message']);
         alert(data['Message']);
       }
     })
     .catch(error => {
-      console.log(error);
       alert(error);
     })
 }
@@ -119,6 +109,11 @@ function sendStatusInvitation (guestId, eventId, status) {
     method: 'PATCH',
   })
   .then(data => data.json())
-  .then((response) => alert(response['Message']))
+  .then((response) => {
+    if(status === "ACCEPTED") {
+      getEvents();
+    }
+    alert(response['Message'])
+  })
   .catch((error) => alert(error));
 }
