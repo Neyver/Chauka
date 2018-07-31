@@ -1,7 +1,5 @@
 const Account = localStorage.getItem('Account');
 
-console.log(Account);
-
 function fillHeader() {
   const account = JSON.parse(Account);
   const headerAccount = document.getElementById('header-account');
@@ -17,16 +15,12 @@ const validateGuest = () => {
 	fetch(urlAccount)
 		.then(data => data.json())
 		.then((responseText) => {
-			console.log(responseText)
 			let result = responseText;
 			if (result.Success===true) {
 				let userId = result.Data.Id;
-				console.log(JSON.stringify(result.Data));
-				console.log(userId)
 				data.EventId = getElement('eventId');
 				data.UserId = userId;
 				var json = JSON.stringify(data);
-				console.log(json);  
 			return fetch(urlGuest, {
 					body: json,
 					headers: {'content-type': 'application/json'},
@@ -40,12 +34,10 @@ const validateGuest = () => {
 		})
 		.then((data) => data.json())
 		.then(response => {
-		  console.log(response);
 		  if(response['Success'] === true) {
 			alert(response['Message']);
 			window.location.href = 'info-event.html?eventId='+ getElement('eventId');
 		  } else {
-			console.log(response['Message']);
 			alert("ERROR: \n"+response['Message']);
 		  }
 		})

@@ -20,9 +20,7 @@ function getEventById() {
     fetch('http://localhost:5387/api/Events?eventId=' + eventId)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             if (data['Success'] === true) {
-                console.log(data['Message']);
                 const account = JSON.parse(Account);
                 const userId = account['Id'];
                 let button = document.getElementById('btn-add');
@@ -34,12 +32,10 @@ function getEventById() {
                 }
                 fillEvents(data['Data']);
             } else {
-                console.log(data['Message']);
                 alert(data['Message']);
             }
         })
         .catch(error => {
-            console.log(error);
             alert(error);
         })
 }
@@ -75,20 +71,16 @@ function cancelPosition() {
 }
 
 function getUsers() {
-    console.log(eventId);
     fetch('http://localhost:5387/api/guests?eventId=' + eventId)
         .then(response => response.json())
         .then(data => {
             if (data['Success'] === true) {
-                console.log(data['Message']);
                 fillTableEvents(data['Data']['Guests']);
             } else {
-                console.log(data['Message']);
                 alert(data['Message']);
             }
         })
         .catch(error => {
-            console.log(error);
             alert(error);
         })
 }
