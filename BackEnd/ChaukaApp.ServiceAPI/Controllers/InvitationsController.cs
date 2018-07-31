@@ -33,7 +33,7 @@
             try
             {
                 IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
-                //result = invitationsDelivery.Change(guest);
+                //result = invitationsDelivery.ChangeInvitatioReponse(guest);
             }
             catch (Exception)
             {
