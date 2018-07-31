@@ -9,13 +9,10 @@ const saveEvent = () => {
   const startDate = document.getElementById('start-date').value;
   const startTime = document.getElementById('start-time').value;
   data.StartDatetime = startDate +" "+ startTime;
-  const endDate = document.getElementById('end-date').value;
-  const endTime = document.getElementById('end-time').value;
-  data.EndDatetime = endDate +" "+ endTime;
   data.UserId = userId;
   data.Latitude = parseFloat(document.getElementById('latitude').value);
   data.Longitude = parseFloat(document.getElementById('longitude').value);
-  
+
   if (data.NameEvent === '' || startDate === '' || startTime === '') {
     alert('Complete the required data');
   }
@@ -41,7 +38,6 @@ const saveEvent = () => {
         alert("Error: "+error);
       })
   }
-
 }
 
 const cancelEventCreation = () => {
