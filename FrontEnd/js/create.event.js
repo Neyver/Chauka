@@ -25,24 +25,19 @@ const saveEvent = () => {
   }
   else {
     var json = JSON.stringify(data);
-    console.log(json);
     fetch(url, {
       body: json,
       headers: {'content-type': 'application/json'},
       method: 'POST'
     }).then(data => data.json())
     .then(response => {
-        console.log(response);
         if(response['Success'] === true) {
-          console.log(response['Message']);
           window.location.href = 'events.html';
         } else {
-          console.log(response['Message']);
           alert(response['Message']);
         }
       })
       .catch(error => {
-        console.log(error);
         alert("Error: "+error);
       })
   }

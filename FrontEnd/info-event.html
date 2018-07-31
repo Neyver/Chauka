@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Details Event</title>
     <link href="./css/main.css" rel="stylesheet" />
-    <script src="./js/details-event.js" type="text/javascript"></script>
-    <!-- <script type="text/javascript" src="js/detail-event-list.js"></script> -->
+    <script type="text/javascript" src="js/details-event.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>    
     <link rel="stylesheet" href="css/style-detail-event-list.css">
 </head>
 <body onload="fillPage()">
@@ -20,7 +20,7 @@
                     </li>
                     <li id="header-account">
                         <ul>
-                            <li>Sign out</li>
+                            <li onclick="logout()">Sign out</li>
                         </ul>
                     </li>
                 </ul>
