@@ -60,5 +60,10 @@
         {
             return true;
         }
+
+        public IEnumerable<Guest> GetEventsByUserId(int userId)
+        {
+            return this.guests.Where(guest => guest.UserId == userId && string.Equals(guest.Status, "PENDING"));
+        }
     }
 }
