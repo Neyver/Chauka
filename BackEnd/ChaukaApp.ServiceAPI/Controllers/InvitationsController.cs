@@ -25,5 +25,23 @@
 
             return resultEvent;
         }
+
+        public ResultSimplified Patch(Guest guest)
+        {
+            ResultSimplified result = new ResultSimplified();
+
+            try
+            {
+                IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
+                //result = invitationsDelivery.ChangeInvitatioReponse(guest);
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+                result.Message = "The service could not respond to your request";
+            }
+
+            return result;
+        }
     }
 }
