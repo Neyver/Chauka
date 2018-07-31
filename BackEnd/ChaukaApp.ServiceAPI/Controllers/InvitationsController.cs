@@ -9,10 +9,10 @@
     public class InvitationsController : ApiController
     {
         // GET api/invitations?userId=1
-        public IResult<UserEvent> Get(int userId)
+        public IResult<EventsInvitation> Get(int userId)
         {
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
-            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
+            IResult<EventsInvitation> resultEvent = new ResultEntity<EventsInvitation>();
             try
             {
                 resultEvent = invitationsDelivery.GetInvitations(userId);
