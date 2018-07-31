@@ -103,8 +103,8 @@
             context.Events.Add(event4);
             context.Events.Add(event5);
 
-            context.Guests.Add(new Guest() { EventId = 1, UserId = 3, Status = "ACCEPTED" });
-            context.Guests.Add(new Guest() { EventId = 1, UserId = 2, Status = "ACCEPTED" });
+            context.Guests.Add(new Guest() { EventId = 1, UserId = 3, Status = "PENDING" });
+            context.Guests.Add(new Guest() { EventId = 1, UserId = 2, Status = "PENDING" });
             context.Guests.Add(new Guest() { EventId = 2, UserId = 4, Status = "ACCEPTED" });
             context.Guests.Add(new Guest() { EventId = 2, UserId = 3, Status = "ACCEPTED" });
             context.Guests.Add(new Guest() { EventId = 3, UserId = 3, Status = "PENDING" });
