@@ -6,9 +6,10 @@
     using Model.Object;
     using Model.Result;
 
-    public class InvitationDeliveryController : ApiController
+    public class InvitationsController : ApiController
     {
-        public IResult<UserEvent> GetInvitations(int userId)
+        // GET api/invitations?userId=1
+        public IResult<UserEvent> Get(int userId)
         {
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
