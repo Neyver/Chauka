@@ -41,6 +41,7 @@ function fillTableEvents(events) {
     let tableEvents = document.getElementById('table-events-user');
     let contentTable = "";
     events.forEach((event) => {
+      console.log(event['NameEvent']);
       contentTable += '<tr>\
         <td>' + event['NameEvent'] + '</td>\
         <td>' + event['StartDatetime'] + '</td>\
@@ -60,7 +61,7 @@ function getInvitations() {
       console.log(data);
       if(data['Success'] === true) {
         console.log(data['Message']);
-        fillTableEvents(data['Data']['Events']);
+        fillTableInvitations(data['Data']['Events']);
       } else {
         console.log(data['Message']);
         alert(data['Message']);

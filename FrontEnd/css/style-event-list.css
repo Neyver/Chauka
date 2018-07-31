@@ -184,6 +184,7 @@ a {
 
 .body-events .events-list i {
   color: #018786;
+  cursor: pointer;
 }
 
 .body-events .events-list button {
