@@ -12,6 +12,6 @@
 
         IEventsRepository<Event> EventRepository { get; set; }
 
-        IResult<UserEvent> GetInvitations(int userId);
+        IResult<EventsInvitation> GetInvitations(int userId);
     }
 }
