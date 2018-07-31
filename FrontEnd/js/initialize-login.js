@@ -15,7 +15,7 @@ function validateLogin() {
             console.log(this.responseText);
             let obj = JSON.parse(this.responseText);
             if (obj.Success===true) {
-                localStorage.clear()
+                localStorage.clear();
                 localStorage.setItem('Account', JSON.stringify(obj.Data));
                 location.href = "events.html";
             }
