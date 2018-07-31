@@ -9,10 +9,10 @@
     public class InvitationsController : ApiController
     {
         // GET api/invitations?userId=1
-        public IResult<UserEvent> Get(int userId)
+        public IResult<EventsInvitation> Get(int userId)
         {
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
-            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
+            IResult<EventsInvitation> resultEvent = new ResultEntity<EventsInvitation>();
             try
             {
                 resultEvent = invitationsDelivery.GetInvitations(userId);
@@ -24,6 +24,24 @@
             }
 
             return resultEvent;
+        }
+
+        public ResultSimplified Patch(Guest guest)
+        {
+            ResultSimplified result = new ResultSimplified();
+
+            try
+            {
+                IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
+                result = invitationsDelivery.ChangeInvitationReponse(guest);
+            }
+            catch (Exception)
+            {
+                result.Success = false;
+                result.Message = "The service could not respond to your request";
+            }
+
+            return result;
         }
     }
 }

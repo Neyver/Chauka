@@ -12,7 +12,7 @@
         [TestMethod]
         public void TestGetInvitationsWhenUserIdIsNegativeReturnUserIdIsNotValid()
         {
-            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
+            IResult<EventsInvitation> resultEvent = new ResultEntity<EventsInvitation>();
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.UserRepository = new TestUserRepository();
             invitationsDelivery.EventRepository = new TestEventsRepository();
@@ -25,7 +25,7 @@
         [TestMethod]
         public void TestGetInvitationsWhenUserIdNotExistReturnUserNotfound()
         {
-            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
+            IResult<EventsInvitation> resultEvent = new ResultEntity<EventsInvitation>();
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.UserRepository = new TestUserRepository();
             invitationsDelivery.EventRepository = new TestEventsRepository();
@@ -38,7 +38,7 @@
         [TestMethod]
         public void TestGetInvitationsWhenUserIdIsValidReturnSuccesfulData()
         {
-            IResult<UserEvent> resultEvent = new ResultEntity<UserEvent>();
+            IResult<EventsInvitation> resultEvent = new ResultEntity<EventsInvitation>();
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
             invitationsDelivery.UserRepository = new TestUserRepository();
             invitationsDelivery.EventRepository = new TestEventsRepository();

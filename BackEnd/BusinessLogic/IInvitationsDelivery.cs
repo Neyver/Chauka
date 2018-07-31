@@ -11,9 +11,9 @@
         IGuestRepository<Guest> GuestRepository { get; set; }
 
         IEventsRepository<Event> EventRepository { get; set; }
-
-        IResult<UserEvent> GetInvitations(int userId);
-
+        
         ResultSimplified ChangeInvitationReponse(Guest guest);
+
+        IResult<EventsInvitation> GetInvitations(int userId);
     }
 }

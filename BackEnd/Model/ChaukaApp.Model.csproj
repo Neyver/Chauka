@@ -49,9 +49,11 @@
     <Compile Include="Core\IUserRepository.cs" />
     <Compile Include="Object\Account.cs" />
     <Compile Include="Object\Event.cs" />
+    <Compile Include="Object\EventsInvitation.cs" />
     <Compile Include="Object\GuestInformation.cs" />
     <Compile Include="Object\EventGuests.cs" />
     <Compile Include="Object\Guest.cs" />
+    <Compile Include="Object\InvitationData.cs" />
     <Compile Include="Object\User.cs" />
     <Compile Include="Object\UserEvent.cs" />
     <Compile Include="Result\IResult.cs" />
