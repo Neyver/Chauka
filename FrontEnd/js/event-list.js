@@ -83,10 +83,10 @@ function fillTableInvitations(invitations) {
         <td>' + invitation['StartDatetime'] + '</td>\
         <td> <a href="info-event.html?eventId=' + invitations['EventId'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
         <td>\
-          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', "ACCEPTED")">\
+          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 1)">\
             <i class="material-icons">event_available</i>\
           </div>\
-          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', "REJECTED")">\
+          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 0)">\
             <i class="material-icons">event_busy</i>\
           </div>\
         </td>\
@@ -99,6 +99,12 @@ function fillTableInvitations(invitations) {
 function sendStatusInvitation (guestId, eventId, status) {
   const account = JSON.parse(Account);
   const userId = account['Id'];
+  if(status) {
+      status = "ACCEPTED"
+  }
+  else {
+    status = "REJECTED"
+  }
   const data = {
     Id: guestId,
     UserId: userId,
@@ -110,7 +116,7 @@ function sendStatusInvitation (guestId, eventId, status) {
     headers: {
       'content-type': 'application/json'
     },
-    method: 'POST',
+    method: 'PATCH',
   })
   .then(data => data.json())
   .then((response) => alert(response['Message']))
