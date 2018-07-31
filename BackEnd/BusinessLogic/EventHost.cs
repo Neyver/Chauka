@@ -57,7 +57,7 @@
         public IResult<UserEvent> GetUserEvents(int userId)
         {
             IResult<UserEvent> eventsResult = new ResultEntity<UserEvent>();
-            UserEvent userResponse = new UserEvent();
+            UserEvent eventsOfUser = new UserEvent();
             if (userId <= 0)
             {
                 eventsResult.Message = "The user ID is not valid";
@@ -81,10 +81,23 @@
                 eventsResult.Success = false;
                 return eventsResult;
             }
+            
+            List<Event> events = new List<Event>();
+            var eventsLikeOwner = this.EventRepository.GetEventsByUserId(userId);
+            var eventsLikeGuest = this.GuestRepository.GetGuestsByUserIdAccepted(userId);
+            foreach (var item in eventsLikeOwner)
+            {
+                events.Add(item);
+            }
 
-            userResponse.Events = this.EventRepository.GetEventsByUserId(userId);
-            userResponse.UserId = userId;
-            eventsResult.Data = userResponse;
+            foreach (var item in eventsLikeGuest)
+            {
+                events.Add(this.EventRepository.GetById(item.EventId));
+            }
+
+            eventsOfUser.UserId = userId;
+            eventsOfUser.Events = events;
+            eventsResult.Data = eventsOfUser;
             eventsResult.Message = "Successful Data";
             eventsResult.Success = true;
 

@@ -53,6 +53,12 @@
             return guests.Where(guest => guest.UserId == userId && string.Equals(guest.Status, "PENDING"));
         }
 
+        public IEnumerable<Guest> GetGuestsByUserIdAccepted(int userId)
+        {
+            var guests = this.context.Set<Guest>();
+            return guests.Where(guest => guest.UserId == userId && string.Equals(guest.Status, "ACCEPTED"));
+        }
+
         public bool UpdateStatusGuest(Guest entity)
         {
             try

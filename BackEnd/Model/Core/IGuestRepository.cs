@@ -10,6 +10,8 @@
 
         IEnumerable<T> GetGuestsByUserId(int userId);
 
+        IEnumerable<T> GetGuestsByUserIdAccepted(int userId);
+
         bool UpdateStatusGuest(T entity);
 
         bool Exist(T entity);
