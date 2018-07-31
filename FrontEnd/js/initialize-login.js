@@ -1,3 +1,5 @@
+localStorage.clear();
+
 setFormLogin = () => {
   document.getElementById("userId").focus()
 }
