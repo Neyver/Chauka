@@ -1,15 +1,18 @@
 ﻿namespace ChaukaApp.ServiceAPI.Controllers
 {
-    using System.Web.Http;
     using BusinessLogic;
     using DataAccess;
     using Model.Core;
     using Model.Object;
     using Model.Result;
+    using System.Web.Http;
 
     public class AccountsController : ApiController
     {
-        // GET api/accounts
+        [HttpGet]
+        [Route("api/v1/accounts/{accountname}")]
+        //[Route("users/{name}")]
+        // public User GetUserByName(string name)
         public IResult<Account> Get(string accountName)
         {
             IUserAuthenticator userVerifier = new UserAuthenticator();
@@ -18,8 +21,8 @@
             return userVerifier.Authentication(accountName);
         }
 
-        // PATCH: api/accounts/
-        [HttpPatch]
+        [HttpPut]
+        [Route("api/v1/accounts/user")]
         public void UpdateGoogleMapPosition([FromBody] User user)
         {
             IMapPositioner positioner = new MapPositioner();
