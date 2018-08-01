@@ -1,6 +1,6 @@
 const userId = JSON.parse(localStorage.getItem('Account'))['Id'];
 
-document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
+//document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 
 const saveEvent = () => {
   var data = {};

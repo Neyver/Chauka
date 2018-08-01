@@ -21,7 +21,7 @@ const validateGuest = () => {
 				let userId = result.Data.Id;
 				data.EventId = getElement('eventId');
 				data.UserId = userId;
-				var json = JSON.stringify(data);console.log("paso OK");
+				var json = JSON.stringify(data);
 			return fetch(urlGuest, {
 					body: json,
 					headers: {'content-type': 'application/json'},
