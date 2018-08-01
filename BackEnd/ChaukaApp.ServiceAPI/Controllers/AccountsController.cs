@@ -10,10 +10,8 @@
     public class AccountsController : ApiController
     {
         [HttpGet]
-        [Route("api/v1/accounts/{accountname}")]
-        //[Route("users/{name}")]
-        // public User GetUserByName(string name)
-        public IResult<Account> Get(string accountName)
+        [Route("api/v1/accounts/{accountName}")]
+        public IResult<Account> GetAccounts(string accountName)
         {
             IUserAuthenticator userVerifier = new UserAuthenticator();
             IUserRepository<User> userRepository = new UserRepository();
