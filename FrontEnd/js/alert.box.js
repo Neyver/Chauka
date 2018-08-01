@@ -54,4 +54,5 @@ var message = 'message'
 
 alertNonPersistent.addEventListener('click', function() {
   alertbox.show(message)
+  message = ''
 });

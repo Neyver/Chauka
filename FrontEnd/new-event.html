@@ -55,11 +55,11 @@
           <input id="latitude" type="hidden" />
           <input id="longitude" type="hidden" />
           <button onclick="cancelEventCreation()">Cancel</button>
-          <button onclick="saveEvent()">Save</button>
+          <button id="alert" onclick="saveEvent()">Save</button>
         </div>
       </div>
     </div>
-
+    <div id="alert-area" class="alert-area"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP7gY7O3qLyFgQY2_W3KtophwT5Lwo0C0"></script>
     <script src="./js/alert.box.js" type="text/javascript"></script>
     <script src="./js/google.map.js" type="text/javascript"></script>
