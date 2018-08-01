@@ -188,25 +188,25 @@ a {
 }
 
 .body-events .events-list button {
-  background-color: #54b3ad;/*#80CBC4;*/
+  background-color: #54b3ad;
   border: none;
   border-radius: 3px;
   font-family: 'Titillium Web', Verdana;
   font-weight: 400;
   float: right;
-  border: 1px solid #54b3ad;/*#018786;*/
+  border: 1px solid #54b3ad;
   cursor: pointer;
   height: 35px;
   padding: 4px 6px;
 }
 
 .body-events .events-list button a {
-  color: white;/*#040404;*/
+  color: white;
   vertical-align: middle;
 }
 
 .body-events .events-list button i {
-  color: white;/*#018786;*/
+  color: white;
   vertical-align: middle;
 }
 
