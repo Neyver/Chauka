@@ -13,7 +13,7 @@
             HttpConfiguration config = new HttpConfiguration();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/v1/{controller}/{id}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional });
             appBuilder.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             appBuilder.UseWebApi(config);
