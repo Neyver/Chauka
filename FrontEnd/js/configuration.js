@@ -1,16 +1,16 @@
-const options = {
+let options = {
     year: "numeric", month: "2-digit",
     day: "2-digit", hour: "2-digit", minute: "2-digit"
 };
-console.log("paso seteo");
-const regionalConfiguration = "en-US";
 
-const servicesUrl = "http://localhost:5387";
+let regionalConfiguration = "en-US";
 
-const accountUrl = `${servicesUrl}/api/Accounts`;
+let servicesUrl = "http://localhost:5387";
 
-const eventsUrl = `${servicesUrl}/api/Events`;
+let accountUrl = `${servicesUrl}/api/Accounts`;
 
-const guestsUrl = `${servicesUrl}/api/guests`;
+let eventsUrl = `${servicesUrl}/api/Events`;
 
-const invitationsUrl = `${servicesUrl}/api/invitations`;
+let guestsUrl = `${servicesUrl}/api/guests`;
+
+let invitationsUrl = `${servicesUrl}/api/invitations`;
