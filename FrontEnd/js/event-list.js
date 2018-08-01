@@ -76,11 +76,11 @@ function fillTableInvitations(invitations) {
         <td>' + startDatetime.toLocaleTimeString(regionalConfiguration, options) + '</td>\
         <td> <a href="info-event.html?eventId=' + invitation['EventId'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
         <td>\
-          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 1)">\
-            <i class="material-icons">event_available</i>\
+          <div class="action accept" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 1)">\
+            <i class="material-icons" title="Accept">event_available</i>\
           </div>\
-          <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 0)">\
-            <i class="material-icons">event_busy</i>\
+          <div class="action reject" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 0)">\
+            <i class="material-icons" title="Reject">event_busy</i>\
           </div>\
         </td>\
       </tr>'
