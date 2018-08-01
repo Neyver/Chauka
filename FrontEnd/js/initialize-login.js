@@ -1,5 +1,5 @@
 localStorage.clear();
-
+document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 setFormLogin = () => {
   document.getElementById("userId").focus()
 }
@@ -40,7 +40,7 @@ function validateLogin() {
             }
         }
     };
-    xhttp.open('GET', 'http://localhost:5387/api/Accounts?accountName=' + username + '', true);
+    xhttp.open('GET', accountUrl + '?accountName=' + username + '', true);
     xhttp.send();
   }
 }

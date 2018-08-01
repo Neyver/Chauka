@@ -1,6 +1,6 @@
 const userId = JSON.parse(localStorage.getItem('Account'))['Id'];
 
-var url = 'http://localhost:5387/api/events';
+document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 
 const saveEvent = () => {
   var data = {};
@@ -24,7 +24,7 @@ const saveEvent = () => {
   }
   else {
     var json = JSON.stringify(data);
-    fetch(url, {
+    fetch(eventsUrl, {
       body: json,
       headers: {'content-type': 'application/json'},
       method: 'POST'

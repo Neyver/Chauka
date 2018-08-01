@@ -1,3 +1,4 @@
+document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 const Account = localStorage.getItem('Account');
 
 function fillHeader() {
@@ -9,24 +10,23 @@ function fillHeader() {
 }
 
 const validateGuest = () => {
-	var urlAccount = 'http://localhost:5387/api/accounts?accountName='+document.getElementById("accountName").value;
-	var urlGuest = 'http://localhost:5387/api/guests?eventId='+ getElement('eventId');
+	var urlAccount = accountUrl + '?accountName='+document.getElementById("accountName").value;
+	var urlGuest = guestsUrl + '?eventId='+ getElement('eventId');	
 	var data = {};
 	fetch(urlAccount)
 		.then(data => data.json())
 		.then((responseText) => {
-			let result = responseText;
+			let result = responseText;			
 			if (result.Success===true) {
 				let userId = result.Data.Id;
 				data.EventId = getElement('eventId');
 				data.UserId = userId;
-				var json = JSON.stringify(data);
+				var json = JSON.stringify(data);console.log("paso OK");
 			return fetch(urlGuest, {
 					body: json,
 					headers: {'content-type': 'application/json'},
 					method: 'POST'
-				  })
-				  return Promise.resolve("asdaas");
+				  })				  
 			}
 			else {
         message = "ERROR: " + result.Message
@@ -37,7 +37,7 @@ const validateGuest = () => {
 		  if (response['Success'] === true) {
 			  window.location.href = 'info-event.html?eventId='+ getElement('eventId');
 		  } else {
-        message = "ERROR: " + response['Message']
+        message = "ERROR: " + response['Message'];
 		  }
 		})
 	.catch(error => {
