@@ -1,3 +1,4 @@
+document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 const Account = localStorage.getItem('Account');
 
 function fillPage() {
@@ -17,7 +18,7 @@ function fillHeader() {
 function getEvents() {
   const account = JSON.parse(Account);
   const userId = account['Id'];
-  fetch('http://localhost:5387/api/Events?userId=' + userId)
+  fetch(eventsUrl + '?userId=' + userId)
     .then(response => response.json())
     .then(data => {
       if(data['Success'] === true) {
@@ -36,9 +37,10 @@ function fillTableEvents(events) {
     let tableEvents = document.getElementById('table-events-user');
     let contentTable = "";
     events.forEach((event) => {
+	const startDatetime = new Date(event['StartDatetime']);
       contentTable += '<tr>\
         <td>' + event['NameEvent'] + '</td>\
-        <td>' + event['StartDatetime'] + '</td>\
+        <td>' + startDatetime.toLocaleTimeString(regionalConfiguration, options) + '</td>\
         <td> <a href="info-event.html?eventId=' + event['Id'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
       </tr>'
     });
@@ -49,7 +51,7 @@ function fillTableEvents(events) {
 function getInvitations() {
   const account = JSON.parse(Account);
   const userId = account['Id'];
-  fetch('http://localhost:5387/api/Invitations?userId=' + userId)
+  fetch(invitationsUrl + '?userId=' + userId)
     .then(response => response.json())
     .then(data => {
       if(data['Success'] === true) {
@@ -68,9 +70,10 @@ function fillTableInvitations(invitations) {
     let tableInvitations = document.getElementById('table-invitations-user');
     let contentTable = "";
     invitations.forEach((invitation) => {
+      const startDatetime = new Date(invitation['StartDatetime']);
       contentTable += '<tr>\
         <td>' + invitation['NameEvent'] + '</td>\
-        <td>' + invitation['StartDatetime'] + '</td>\
+        <td>' + startDatetime.toLocaleTimeString(regionalConfiguration, options) + '</td>\
         <td> <a href="info-event.html?eventId=' + invitation['EventId'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
         <td>\
           <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 1)">\
@@ -101,12 +104,12 @@ function sendStatusInvitation (guestId, eventId, status) {
     EventId: eventId,
     Status: status
   }
-  fetch('http://localhost:5387/api/Invitations', {
+  fetch(invitationsUrl, {
     body: JSON.stringify(data),
     headers: {
       'content-type': 'application/json'
     },
-    method: 'PATCH',
+    method: 'PUT',
   })
   .then(data => data.json())
   .then((response) => {

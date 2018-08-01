@@ -1,3 +1,4 @@
+document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 const Account = JSON.parse(localStorage.getItem('Account'))
 
 const fillHeader = () => {
@@ -11,8 +12,6 @@ const cancelPosition = () => {
   window.location.href = 'events.html'
 }
 
-var url = 'http://localhost:5387/api/accounts';
-
 const saveMyPosition = () => {
   var data = {}
   data.Id = Account['Id']
@@ -25,7 +24,7 @@ const saveMyPosition = () => {
   }
   else {
     var json = JSON.stringify(data)
-    fetch(url, {
+    fetch(accountUrl, {
       body: json,
       headers: {'content-type': 'application/json'},
       method: 'PATCH'
