@@ -45,7 +45,6 @@
         {
             var guests = this.context.Set<Guest>();
             return guests.Where(guest => guest.EventId == eventId && string.Equals(guest.Status, "ACCEPTED"));
-            //return guests.Where(guest => guest.EventId == eventId && string.Equals(guest.Status, "PENDING"));
         }
 
         public IEnumerable<Guest> GetGuestsByUserId(int userId)

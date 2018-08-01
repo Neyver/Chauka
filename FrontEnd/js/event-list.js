@@ -113,6 +113,7 @@ function sendStatusInvitation (guestId, eventId, status) {
     if(status === "ACCEPTED") {
       getEvents();
     }
+    getInvitations();
     message = response['Message']
   })
   .catch(error => message = error);
