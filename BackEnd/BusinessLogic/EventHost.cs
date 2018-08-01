@@ -246,22 +246,30 @@
                         {
                             if (newGuest.EventId > 0)
                             {
-                                if (!this.GuestRepository.Exist(newGuest))
+                                var eventRepository = this.EventRepository.GetById(newGuest.EventId);
+                                if (newGuest.UserId != eventRepository.UserId)
                                 {
-                                    newGuest.Status = "PENDING";
-                                    if (this.GuestRepository.Create(newGuest))
+                                    if (!this.GuestRepository.Exist(newGuest))
                                     {
-                                        result.Success = true;
-                                        result.Message = "Invitation sent.";
+                                        newGuest.Status = "PENDING";
+                                        if (this.GuestRepository.Create(newGuest))
+                                        {
+                                            result.Success = true;
+                                            result.Message = "Invitation sent.";
+                                        }
+                                        else
+                                        {
+                                            result.Message = "The register of the Guest can not be created.";
+                                        }
                                     }
                                     else
                                     {
-                                        result.Message = "The register of the Guest can not be created.";
+                                        result.Message = "The invitation really exist.";
                                     }
                                 }
                                 else
                                 {
-                                    result.Message = "The invitation really exist.";
+                                    result.Message = "The owner can not invite himself.";
                                 }
                             }
                             else
