@@ -109,7 +109,7 @@ function sendStatusInvitation (guestId, eventId, status) {
     headers: {
       'content-type': 'application/json'
     },
-    method: 'PUT',
+    method: 'PATCH',
   })
   .then(data => data.json())
   .then((response) => {
