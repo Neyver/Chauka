@@ -90,7 +90,7 @@ a {
 
 .body-events .events-list .events-accepted .title {
   font-size: 30px;
-  text-align: center;
+  text-align: left;
   height: 20%;
 }
 
@@ -135,7 +135,7 @@ a {
 
 .body-events .events-list .invitations .title {
   font-size: 30px;
-  text-align: center;
+  text-align: left;
   height: 20%;
 }
 
@@ -188,23 +188,32 @@ a {
 }
 
 .body-events .events-list button {
-  background-color: #80CBC4;
+  background-color: #54b3ad;/*#80CBC4;*/
   border: none;
   border-radius: 3px;
   font-family: 'Titillium Web', Verdana;
   font-weight: 400;
   float: right;
-  border: 1px solid #018786;
+  border: 1px solid #54b3ad;/*#018786;*/
   cursor: pointer;
   height: 35px;
+  padding: 4px 6px;
 }
 
 .body-events .events-list button a {
-  color: #040404;
+  color: white;/*#040404;*/
   vertical-align: middle;
 }
 
 .body-events .events-list button i {
-  color: #018786;
+  color: white;/*#018786;*/
   vertical-align: middle;
+}
+
+.body-events .events-list .accept i {
+  color: #43a047;
+}
+
+.body-events .events-list .reject i {
+  color: #e57373;
 }
