@@ -71,7 +71,7 @@ function fillTableInvitations(invitations) {
       contentTable += '<tr>\
         <td>' + invitation['NameEvent'] + '</td>\
         <td>' + invitation['StartDatetime'] + '</td>\
-        <td> <a href="info-event.html?eventId=' + invitations['EventId'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
+        <td> <a href="info-event.html?eventId=' + invitation['EventId'] + '"> <i class="material-icons">insert_drive_file</i> </a> </td>\
         <td>\
           <div class="action" onclick="sendStatusInvitation('+ invitation['GuestId'] + ', ' + invitation['EventId'] + ', 1)">\
             <i class="material-icons">event_available</i>\
@@ -113,6 +113,7 @@ function sendStatusInvitation (guestId, eventId, status) {
     if(status === "ACCEPTED") {
       getEvents();
     }
+    getInvitations();
     message = response['Message']
   })
   .catch(error => message = error);

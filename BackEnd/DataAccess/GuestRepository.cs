@@ -44,7 +44,7 @@
         public IEnumerable<Guest> GetGuestsByEventId(int eventId)
         {
             var guests = this.context.Set<Guest>();
-            return guests.Where(guest => guest.EventId == eventId && string.Equals(guest.Status, "PENDING"));
+            return guests.Where(guest => guest.EventId == eventId && string.Equals(guest.Status, "ACCEPTED"));
         }
 
         public IEnumerable<Guest> GetGuestsByUserId(int userId)
