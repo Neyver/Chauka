@@ -29,23 +29,19 @@ const validateGuest = () => {
 				  })				  
 			}
 			else {
-				//alert("ERROR: \n"+result.Message);
         message = "ERROR: " + result.Message
 			}
 		})
 		.then((data) => data.json())
 		.then(response => {
 		  if (response['Success'] === true) {
-			  //alert(response['Message']);
 			  window.location.href = 'info-event.html?eventId='+ getElement('eventId');
 		  } else {
-        //alert("ERROR: \n"+response['Message']);
         message = "ERROR: " + response['Message'];
 		  }
 		})
 	.catch(error => {
-		//console.log(error);
-    message = error;
+    message = error
   });
 }
 
