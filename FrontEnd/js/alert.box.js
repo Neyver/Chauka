@@ -52,7 +52,9 @@ var alertbox = new AlertBox({
 
 var message = 'message'
 
-alertNonPersistent.addEventListener('click', function() {
-  alertbox.show(message)
-  message = ''
-});
+if (alertNonPersistent != null) {  
+  alertNonPersistent.addEventListener('click', function() {
+    alertbox.show(message)
+    message = ''
+  });
+}
