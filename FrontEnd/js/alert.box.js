@@ -1,5 +1,5 @@
 var AlertBox = function(option) {
-  this.show = function(msg) {
+  this.show = msg => {
     if (msg === ''  || typeof msg === 'undefined' || msg === null) {
       throw '"msg parameter is empty"';
     }
@@ -19,12 +19,12 @@ var AlertBox = function(option) {
         alertBox.appendChild(alertClose);
       }
       alertArea.appendChild(alertBox);
-      alertClose.addEventListener('click', function(event) {
+      alertClose.addEventListener('click', event => {
         event.preventDefault();
         alertClass.hide(alertBox);
       });
       if (!option.persistent) {
-        var alertTimeout = setTimeout(function() {
+        var alertTimeout = setTimeout(() => {
           alertClass.hide(alertBox);
           clearTimeout(alertTimeout);
         }, option.closeTime);
@@ -32,16 +32,14 @@ var AlertBox = function(option) {
     }
   };
 
-  this.hide = function(alertBox) {
+  this.hide = alertBox => {
     alertBox.classList.add('hide');
-    var disperseTimeout = setTimeout(function() {
+    var disperseTimeout = setTimeout(() => {
       alertBox.parentNode.removeChild(alertBox);
       clearTimeout(disperseTimeout);
     }, 500);
   };
 };
-
-var alertNonPersistent = document.querySelector('#alert');
 
 var alertbox = new AlertBox({
   closeTime: 5000,
@@ -49,10 +47,12 @@ var alertbox = new AlertBox({
   hideCloseButton: false
 });
 
-
+var alertNonPersistent = document.querySelector('#alert')
 var message = 'message'
 
-alertNonPersistent.addEventListener('click', function() {
-  alertbox.show(message)
-  message = ''
-});
+if (alertNonPersistent != null) {
+  alertNonPersistent.addEventListener('click', () => {
+    alertbox.show(message)
+    message = ''
+  });
+}

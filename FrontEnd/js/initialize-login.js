@@ -1,5 +1,5 @@
 localStorage.clear();
-
+document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 setFormLogin = () => {
   document.getElementById("userId").focus()
 }
@@ -8,6 +8,7 @@ function validateLogin() {
   var username = document.getElementById("userId").value
   if (username === '' ) {
     message = 'The account name must not be empty'
+    alertbox.show(message)
   }
   else {
     var xhttp = new XMLHttpRequest();
@@ -21,6 +22,7 @@ function validateLogin() {
             }
             else {
                 message = obj.Message
+                alertbox.show(message)
             }
 
         }
@@ -29,14 +31,16 @@ function validateLogin() {
                 if (this.readyState == 4 && this.status == 400) {
                     let obj = JSON.parse(this.responseText);
                     message = obj.Message
+                    alertbox.show(message)
                 }
                 else {
                     message = 'Unexpected error!\n could not be processed.'
+                    alertbox.show(message)
                 }
             }
         }
     };
-    xhttp.open('GET', 'http://localhost:5387/api/Accounts?accountName=' + username + '', true);
+    xhttp.open('GET', accountUrl + '?accountName=' + username + '', true);
     xhttp.send();
   }
 }

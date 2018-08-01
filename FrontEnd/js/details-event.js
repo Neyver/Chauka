@@ -1,3 +1,4 @@
+document.write("<"+"script type='text/javascript' src='./js/configuration.js'><"+"/script>");
 const Account = localStorage.getItem('Account');
 var eventId;
 
@@ -17,7 +18,7 @@ function fillHeader() {
 }
 
 function getEventById() {
-    fetch('http://localhost:5387/api/Events?eventId=' + eventId)
+    fetch(eventsUrl + '?eventId=' + eventId)
         .then(response => response.json())
         .then(data => {
             if (data['Success'] === true) {
@@ -52,7 +53,8 @@ function fillEvents(data) {
         let nameEvent = document.getElementById('name-event');
         nameEvent.innerHTML = data.NameEvent;
         let startDate = document.getElementById('start-date');
-        startDate.innerHTML = data.StartDatetime;
+		const startDatetime = new Date(data.StartDatetime);
+        startDate.innerHTML = startDatetime.toLocaleTimeString(regionalConfiguration, options);
         getMap(data);
     }
 }
@@ -69,7 +71,7 @@ function cancelPosition() {
 }
 
 function getUsers() {
-    fetch('http://localhost:5387/api/guests?eventId=' + eventId)
+    fetch(guestsUrl + '?eventId=' + eventId)
         .then(response => response.json())
         .then(data => {
             if (data['Success'] === true) {
