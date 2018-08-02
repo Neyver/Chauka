@@ -26,10 +26,9 @@
             return resultEvent;
         }
 
-        //[HttpPut]
-        //[Route("api/v1/invitations")]
-        //public ResultSimplified Put(Guest guest)
-        public ResultSimplified Patch(Guest guest)
+        [HttpPut]
+        [Route("api/v1/invitations")]
+        public ResultSimplified Put([FromBody]Guest guest)
         {
             ResultSimplified result = new ResultSimplified();
 
