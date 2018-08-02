@@ -8,6 +8,8 @@
 
     public class EventsController : ApiController
     {
+        [HttpGet]
+        [Route("api/v1/accounts/{userId}/events")]
         // GET api/events
         public IResult<UserEvent> Get(int userId)
         {
@@ -27,6 +29,7 @@
             return resultEvent;
         }
 
+        //[Route("api/v1/events/{eventId}/guests")]
         // GET api/events?eventId=1
         [HttpGet]
         public IResult<Event> GetEvent(int eventId)

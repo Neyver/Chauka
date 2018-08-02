@@ -9,6 +9,8 @@
 
     public class AccountsController : ApiController
     {
+        [HttpGet]
+        [Route("api/v1/accounts/{accountName}")]
         // GET api/accounts
         public IResult<Account> Get(string accountName)
         {
@@ -18,6 +20,8 @@
             return userVerifier.Authentication(accountName);
         }
 
+        //[HttpPut]
+        //[Route("api/v1/accounts/user")]        
         // PATCH: api/accounts/
         [HttpPatch]
         public void UpdateGoogleMapPosition([FromBody] User user)
