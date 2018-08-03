@@ -40,7 +40,7 @@ function validateLogin() {
             }
         }
     };
-    xhttp.open('GET', accountUrl + '?accountName=' + username + '', true);
+    xhttp.open('GET', accountUrl + '/' + username + '', true);
     xhttp.send();
   }
 }

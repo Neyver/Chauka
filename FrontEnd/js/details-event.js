@@ -18,7 +18,7 @@ function fillHeader() {
 }
 
 function getEventById() {
-    fetch(eventsUrl + '?eventId=' + eventId)
+    fetch(eventsUrl + '/' + eventId)
         .then(response => response.json())
         .then(data => {
             if (data['Success'] === true) {
@@ -71,7 +71,7 @@ function cancelPosition() {
 }
 
 function getUsers() {
-    fetch(guestsUrl + '?eventId=' + eventId)
+    fetch(eventsUrl + '/' + eventId + '/guests')
         .then(response => response.json())
         .then(data => {
             if (data['Success'] === true) {

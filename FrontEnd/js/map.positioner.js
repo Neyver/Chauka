@@ -27,7 +27,7 @@ const saveMyPosition = () => {
     fetch(accountUrl, {
       body: json,
       headers: {'content-type': 'application/json'},
-      method: 'PATCH'
+      method: 'PUT'
     }).then(response => window.location.href = 'events.html')
   }
 }
