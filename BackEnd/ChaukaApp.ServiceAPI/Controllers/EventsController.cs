@@ -29,6 +29,8 @@
             return resultEvent;
         }
 
+        [HttpPost]
+        [Route("api/v1/events")]
         public ResultSimplified Post(Event newEvent)
         {
             ResultSimplified resultRegister;
@@ -45,6 +47,25 @@
             }
 
             return resultRegister;
+        }
+
+        [HttpGet]
+        [Route("api/v1/events/{eventId}/guests")]
+        public IResult<EventGuests> GetGuestsByEventId(int eventId)
+        {
+            IResult<EventGuests> resultEvent = new ResultEntity<EventGuests>();
+            IEventHost eventHost = new EventHost();
+            try
+            {
+                resultEvent = eventHost.GetGuestList(eventId);
+            }
+            catch (Exception)
+            {
+                resultEvent.Success = false;
+                resultEvent.Message = "The service could not respond to your request";
+            }
+
+            return resultEvent;
         }
     }
 }

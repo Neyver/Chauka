@@ -10,8 +10,8 @@ function fillHeader() {
 }
 
 const validateGuest = () => {
-	var urlAccount = accountUrl + '?accountName='+document.getElementById("accountName").value;
-	var urlGuest = guestsUrl + '?eventId='+ getElement('eventId');	
+	var urlAccount = accountUrl + '/'+document.getElementById("accountName").value;
+	var urlGuest = guestsUrl;	
 	var data = {};
 	fetch(urlAccount)
 		.then(data => data.json())

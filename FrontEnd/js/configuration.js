@@ -7,10 +7,10 @@ let regionalConfiguration = "en-US";
 
 let servicesUrl = "http://localhost:5387";
 
-let accountUrl = `${servicesUrl}/api/Accounts`;
+let accountUrl = `${servicesUrl}/api/v1/Accounts`;
 
-let eventsUrl = `${servicesUrl}/api/Events`;
+let eventsUrl = `${servicesUrl}/api/v1/Events`;
 
-let guestsUrl = `${servicesUrl}/api/guests`;
+let guestsUrl = `${servicesUrl}/api/v1/Guests`;
 
-let invitationsUrl = `${servicesUrl}/api/invitations`;
+let invitationsUrl = `${servicesUrl}/api/v1/Invitations`;

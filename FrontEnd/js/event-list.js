@@ -18,7 +18,7 @@ function fillHeader() {
 function getEvents() {
   const account = JSON.parse(Account);
   const userId = account['Id'];
-  fetch(eventsUrl + '?userId=' + userId)
+  fetch(accountUrl + '/' + userId + '/events')
     .then(response => response.json())
     .then(data => {
       if(data['Success'] === true) {
@@ -51,7 +51,7 @@ function fillTableEvents(events) {
 function getInvitations() {
   const account = JSON.parse(Account);
   const userId = account['Id'];
-  fetch(invitationsUrl + '?userId=' + userId)
+  fetch(invitationsUrl + '/' + userId)
     .then(response => response.json())
     .then(data => {
       if(data['Success'] === true) {
@@ -109,7 +109,7 @@ function sendStatusInvitation (guestId, eventId, status) {
     headers: {
       'content-type': 'application/json'
     },
-    method: 'PATCH',
+    method: 'PUT',
   })
   .then(data => data.json())
   .then((response) => {

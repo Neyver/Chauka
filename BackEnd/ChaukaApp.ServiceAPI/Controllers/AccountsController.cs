@@ -21,7 +21,7 @@
         }
 
         [HttpPut]
-        [Route("api/v1/accounts/user")]
+        [Route("api/v1/accounts")]
         public void UpdateGoogleMapPosition([FromBody] User user)
         {
             IMapPositioner positioner = new MapPositioner();
