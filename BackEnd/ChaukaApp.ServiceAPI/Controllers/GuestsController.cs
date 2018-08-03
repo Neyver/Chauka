@@ -26,8 +26,8 @@
             return resultEvent;
         }
 
-        // POST api/guests
-        public ResultSimplified Post(Guest guest)
+        [Route("api/guests")]
+        public ResultSimplified Post([FromBody]Guest guest)
         {
             ResultSimplified result = new ResultSimplified();
             

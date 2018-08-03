@@ -8,7 +8,7 @@
 
     public class InvitationsController : ApiController
     {
-        // GET api/invitations?userId=1
+        [Route("api/v1/invitations/{userId}")]
         public IResult<EventsInvitation> Get(int userId)
         {
             IInvitationsDelivery invitationsDelivery = new InvitationsDelivery();
