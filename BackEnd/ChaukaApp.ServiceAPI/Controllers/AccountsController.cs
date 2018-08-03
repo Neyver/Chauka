@@ -11,7 +11,6 @@
     {
         [HttpGet]
         [Route("api/v1/accounts/{accountName}")]
-        // GET api/accounts
         public IResult<Account> Get(string accountName)
         {
             IUserAuthenticator userVerifier = new UserAuthenticator();
@@ -20,10 +19,8 @@
             return userVerifier.Authentication(accountName);
         }
 
-        //[HttpPut]
-        //[Route("api/v1/accounts/user")]        
-        // PATCH: api/accounts/
-        [HttpPatch]
+        [HttpPut]
+        [Route("api/v1/accounts/user")]
         public void UpdateGoogleMapPosition([FromBody] User user)
         {
             IMapPositioner positioner = new MapPositioner();
